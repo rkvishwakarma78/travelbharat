@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Search tourist places, cities, and travel experiences across India with instant multi-facet filters on TravelBharat." />
+  <title>Search & Explore Destinations – TravelBharat</title>
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ================= SITE HEADER ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="TravelBharat Homepage">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="states.html" class="nav-link">States & UTs</a>
+        <a href="search.html?filter=cities" class="nav-link">Cities</a>
+        <a href="experiences.html" class="nav-link">Experiences</a>
+        <a href="search.html" class="nav-link active">Explore</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="mobile-toggle-btn" id="mobileToggle" aria-label="Toggle Mobile Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobileClose">&times;</button>
+    </div>
+    <nav class="mobile-nav-list">
+      <a href="index.html" class="mobile-nav-link">Home <span>&rarr;</span></a>
+      <a href="states.html" class="mobile-nav-link">States & UTs <span>&rarr;</span></a>
+      <a href="search.html?filter=cities" class="mobile-nav-link">Cities (200+) <span>&rarr;</span></a>
+      <a href="experiences.html" class="mobile-nav-link">Experiences <span>&rarr;</span></a>
+      <a href="search.html" class="mobile-nav-link active">Explore & Search <span>&rarr;</span></a>
+      <a href="about.html" class="mobile-nav-link">About Us <span>&rarr;</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact <span>&rarr;</span></a>
+    </nav>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+    <!-- Search Controls Hero Bar -->
+    <section style="background: linear-gradient(135deg, var(--bg-dark) 0%, #172554 100%); color: #ffffff; padding: 3rem 0 2.5rem 0;">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="breadcrumbs" style="color: #cbd5e1; margin-bottom: 1rem;">
+          <ol style="display:flex; align-items:center; gap:0.5rem;">
+            <li class="breadcrumb-item"><a href="index.html" style="color:#cbd5e1;">Home</a></li>
+            <span class="breadcrumb-sep">&rsaquo;</span>
+            <li class="breadcrumb-item current" style="color:#ffedd5;">Search & Explore</li>
+          </ol>
+        </nav>
+
+        <h1 class="heading-display" style="font-size: 2.5rem; margin-bottom: 1.5rem; color: #ffffff;">
+          Search India's Tourism Catalog
+        </h1>
+
+        <!-- Search Input Bar -->
+        <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 0.6rem 0.8rem 0.6rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; box-shadow: var(--shadow-xl); max-width: 860px;">
+          <span style="font-size: 1.25rem; color: var(--text-muted);">🔍</span>
+          <input 
+            type="text" 
+            id="globalSearchInput" 
+            placeholder="Search by monument name, city, state, or keywords (e.g. Taj Mahal, Fort, Beach, Kerala, Jaipur)..." 
+            style="flex: 1; border: none; outline: none; font-size: 1.0625rem; color: var(--text-main);"
+            autocomplete="off"
+            aria-label="Search all destinations"
+          />
+          <button type="button" id="clearSearchInputBtn" class="btn btn-sm btn-outline" style="display: none;">Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Multi-Facet Filter Panel -->
+    <section class="section" style="padding: 2.5rem 0;">
+      <div class="container">
+        <div style="background: #ffffff; border-radius: var(--radius-md); padding: 1.5rem; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: flex-end;">
+            
+            <!-- Filter by Content Type -->
+            <div>
+              <label for="filterTypeSelect" style="display: block; font-size: 0.8125rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">View Category</label>
+              <select id="filterTypeSelect" style="width: 100%; padding: 0.6rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: #fff; font-size: 0.9375rem;">
+                <option value="all">Attractions & Monuments</option>
+                <option value="cities">Cities & Towns (200+)</option>
+              </select>
+            </div>
+
+            <!-- Filter by State -->
+            <div>
+              <label for="filterStateSelect" style="display: block; font-size: 0.8125rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">State / UT</label>
+              <select id="filterStateSelect" style="width: 100%; padding: 0.6rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: #fff; font-size: 0.9375rem;">
+                <option value="all">All 36 States & UTs</option>
+                <!-- Populated dynamically via JS -->
+              </select>
+            </div>
+
+            <!-- Filter by Experience Theme -->
+            <div>
+              <label for="filterCategorySelect" style="display: block; font-size: 0.8125rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">Experience Theme</label>
+              <select id="filterCategorySelect" style="width: 100%; padding: 0.6rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: #fff; font-size: 0.9375rem;">
+                <option value="all">All Experiences</option>
+                <option value="Heritage">Heritage & Forts</option>
+                <option value="Nature">Nature & Valleys</option>
+                <option value="Beaches">Beaches & Coastal</option>
+                <option value="Adventure">Adventure & Thrill</option>
+                <option value="Spiritual">Spiritual & Shrines</option>
+                <option value="Wildlife">Wildlife & Safaris</option>
+                <option value="Romantic">Romantic Escapes</option>
+              </select>
+            </div>
+
+            <!-- Filter by Region -->
+            <div>
+              <label for="filterRegionSelect" style="display: block; font-size: 0.8125rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase;">Geographical Region</label>
+              <select id="filterRegionSelect" style="width: 100%; padding: 0.6rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: #fff; font-size: 0.9375rem;">
+                <option value="all">All Regions</option>
+                <option value="North">North India</option>
+                <option value="South">South India</option>
+                <option value="West">West India</option>
+                <option value="East">East India</option>
+                <option value="Northeast">Northeast India</option>
+                <option value="Central">Central India</option>
+                <option value="ut">Union Territories</option>
+              </select>
+            </div>
+
+            <!-- Reset Filters Button -->
+            <div>
+              <button type="button" id="resetSearchFiltersBtn" class="btn btn-outline" style="width: 100%; height: 42px;">
+                Reset Filters
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Status & Result Counter -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1rem;">
+          <h2 id="searchResultsSummary" style="font-size: 1.25rem; font-weight: 700; color: var(--text-main);">
+            Showing all destinations
+          </h2>
+          <div id="activeFilterChips" style="display: flex; gap: 0.5rem; flex-wrap: wrap;"></div>
+        </div>
+
+        <!-- Results Grid -->
+        <div class="places-grid" id="searchResultsGrid">
+          <!-- Rendered via JavaScript -->
+        </div>
+
+        <!-- Zero Results Empty State -->
+        <div id="noSearchResultsState" class="empty-state" style="display: none;">
+          <div class="empty-state-icon">🔍</div>
+          <h3 class="empty-state-title">No Matching Destinations Found</h3>
+          <p class="empty-state-desc">We couldn't find any results matching your search terms and filter criteria. Try adjusting your keywords or resetting filters.</p>
+          <button type="button" class="btn btn-primary" id="emptyStateResetBtn">Reset All Search Filters</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= SITE FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="logo-badge">TB</div>
+            <span>Travel<span class="brand-highlight">Bharat</span></span>
+          </div>
+          <p>TravelBharat is an independent tourism discovery platform showcasing India's rich heritage, diverse cultures, and stunning natural wonders.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Explore India</h4>
+          <div class="footer-links">
+            <a href="states.html">All 36 States & UTs</a>
+            <a href="search.html?filter=cities">200+ Cities</a>
+            <a href="experiences.html">Travel Experiences</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Advanced Search</a>
+            <a href="about.html">About TravelBharat</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Search Intelligence</h4>
+          <p style="font-size: 0.875rem; color: #94a3b8; line-height: 1.6;">
+            Fast debounced in-memory indexing across 500+ monuments and 200+ tourist cities.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 TravelBharat. Discover India. One Journey at a Time.</div>
+        <div><a href="index.html">Home</a> • <a href="states.html">States</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Scroll to top">&uarr;</button>
+
+  <!-- ================= JAVASCRIPT MODULES ================= -->
+  <script src="data/images.js"></script>
+  <script src="data/experiences.js"></script>
+  <script src="data/states.js"></script>
+  <script src="data/cities.js"></script>
+  <script src="data/destinations.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Search Page Controller Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('globalSearchInput');
+      const clearBtn = document.getElementById('clearSearchInputBtn');
+      const typeSelect = document.getElementById('filterTypeSelect');
+      const stateSelect = document.getElementById('filterStateSelect');
+      const catSelect = document.getElementById('filterCategorySelect');
+      const regionSelect = document.getElementById('filterRegionSelect');
+      const resetBtn = document.getElementById('resetSearchFiltersBtn');
+      const emptyResetBtn = document.getElementById('emptyStateResetBtn');
+      const summaryLabel = document.getElementById('searchResultsSummary');
+      const gridContainer = document.getElementById('searchResultsGrid');
+      const noResultsState = document.getElementById('noSearchResultsState');
+
+      // Populate States in dropdown
+      const allStates = TravelBharatData.getAllStates();
+      allStates.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.id;
+        opt.textContent = `${s.name} (${s.type === 'ut' ? 'UT' : s.region})`;
+        stateSelect.appendChild(opt);
+      });
+
+      // Parse URL Parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('q')) {
+        searchInput.value = urlParams.get('q');
+        clearBtn.style.display = 'inline-flex';
+      }
+      if (urlParams.get('state')) stateSelect.value = urlParams.get('state');
+      if (urlParams.get('category')) catSelect.value = urlParams.get('category');
+      if (urlParams.get('region')) regionSelect.value = urlParams.get('region');
+      if (urlParams.get('filter') === 'cities') typeSelect.value = 'cities';
+
+      let debounceTimer = null;
+
+      function executeSearch() {
+        const q = searchInput.value.trim().toLowerCase();
+        const viewType = typeSelect.value;
+        const selectedState = stateSelect.value;
+        const selectedCat = catSelect.value;
+        const selectedRegion = regionSelect.value;
+
+        // Search in Cities
+        if (viewType === 'cities') {
+          let cities = TravelBharatData.getAllCities();
+
+          if (q) {
+            cities = cities.filter(c => {
+              const state = TravelBharatData.getStateById(c.stateId);
+              const stateName = state ? state.name.toLowerCase() : '';
+              return (
+                c.name.toLowerCase().includes(q) ||
+                (c.knownAs && c.knownAs.toLowerCase().includes(q)) ||
+                c.overview.toLowerCase().includes(q) ||
+                stateName.includes(q)
+              );
+            });
+          }
+
+          if (selectedState !== 'all') {
+            cities = cities.filter(c => c.stateId.toLowerCase() === selectedState.toLowerCase());
+          }
+
+          if (selectedRegion !== 'all') {
+            cities = cities.filter(c => {
+              const state = TravelBharatData.getStateById(c.stateId);
+              if (!state) return false;
+              if (selectedRegion.toLowerCase() === 'ut') return state.type === 'ut';
+              return state.region.toLowerCase() === selectedRegion.toLowerCase() && state.type !== 'ut';
+            });
+          }
+
+          if (cities.length === 0) {
+            gridContainer.innerHTML = '';
+            noResultsState.style.display = 'block';
+            summaryLabel.textContent = `No cities found matching your filters`;
+          } else {
+            noResultsState.style.display = 'none';
+            gridContainer.innerHTML = cities.map(c => TravelBharatUI.createCityCard(c)).join('');
+            summaryLabel.textContent = `Found ${cities.length} ${cities.length === 1 ? 'City' : 'Cities across India'}`;
+          }
+          return;
+        }
+
+        // Search in Destinations (Places)
+        const filters = {
+          state: selectedState,
+          category: selectedCat,
+          region: selectedRegion
+        };
+
+        const results = TravelBharatData.searchAll(q, filters);
+
+        if (results.length === 0) {
+          gridContainer.innerHTML = '';
+          noResultsState.style.display = 'block';
+          summaryLabel.textContent = `No destinations found for "${q || 'selected criteria'}"`;
+        } else {
+          noResultsState.style.display = 'none';
+          gridContainer.innerHTML = results.map(p => TravelBharatUI.createPlaceCard(p)).join('');
+          
+          let desc = `Showing ${results.length} ${results.length === 1 ? 'Destinations' : 'Destinations'}`;
+          if (q) desc += ` matching "${q}"`;
+          if (selectedState !== 'all') {
+            const stObj = TravelBharatData.getStateById(selectedState);
+            if (stObj) desc += ` in ${stObj.name}`;
+          }
+          summaryLabel.textContent = desc;
+        }
+      }
+
+      // Initial Search
+      executeSearch();
+
+      // Debounced Input
+      searchInput.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        clearBtn.style.display = searchInput.value.trim() ? 'inline-flex' : 'none';
+        debounceTimer = setTimeout(executeSearch, 200);
+      });
+
+      // Clear button
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        clearBtn.style.display = 'none';
+        searchInput.focus();
+        executeSearch();
+      });
+
+      // Filter Changes
+      typeSelect.addEventListener('change', executeSearch);
+      stateSelect.addEventListener('change', executeSearch);
+      catSelect.addEventListener('change', executeSearch);
+      regionSelect.addEventListener('change', executeSearch);
+
+      function resetAll() {
+        searchInput.value = '';
+        clearBtn.style.display = 'none';
+        typeSelect.value = 'all';
+        stateSelect.value = 'all';
+        catSelect.value = 'all';
+        regionSelect.value = 'all';
+        executeSearch();
+      }
+
+      resetBtn.addEventListener('click', resetAll);
+      emptyResetBtn.addEventListener('click', resetAll);
+    });
+  </script>
+</body>
+</html>

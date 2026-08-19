@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="City travel guides in India with top attractions, how to reach, maps, best season to visit, and verified photography on TravelBharat." />
+  <title>City Travel Guide – TravelBharat</title>
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ================= SITE HEADER ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="TravelBharat Homepage">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="states.html" class="nav-link">States & UTs</a>
+        <a href="search.html?filter=cities" class="nav-link active">Cities</a>
+        <a href="experiences.html" class="nav-link">Experiences</a>
+        <a href="search.html" class="nav-link">Explore</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" onclick="window.location.href='search.html'" aria-label="Open Search">
+          <span class="search-icon">🔍</span>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <button type="button" class="mobile-toggle-btn" id="mobileToggle" aria-label="Toggle Mobile Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobileClose">&times;</button>
+    </div>
+    <nav class="mobile-nav-list">
+      <a href="index.html" class="mobile-nav-link">Home <span>&rarr;</span></a>
+      <a href="states.html" class="mobile-nav-link">States & UTs <span>&rarr;</span></a>
+      <a href="search.html?filter=cities" class="mobile-nav-link active">Cities (200+) <span>&rarr;</span></a>
+      <a href="experiences.html" class="mobile-nav-link">Experiences <span>&rarr;</span></a>
+      <a href="search.html" class="mobile-nav-link">Explore & Search <span>&rarr;</span></a>
+      <a href="about.html" class="mobile-nav-link">About Us <span>&rarr;</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact <span>&rarr;</span></a>
+    </nav>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+    <!-- Error State (If City Not Found) -->
+    <div id="cityErrorContainer" class="container" style="display: none; padding: 5rem 1.5rem;">
+      <div class="empty-state">
+        <div class="empty-state-icon">⚠️</div>
+        <h2 class="empty-state-title">City Not Found</h2>
+        <p class="empty-state-desc" id="cityErrorMessage">The requested tourist city could not be located in our database.</p>
+        <a href="states.html" class="btn btn-primary">&larr; Browse All Indian States & Cities</a>
+      </div>
+    </div>
+
+    <!-- Main City Dynamic Content -->
+    <div id="cityMainContent">
+      <!-- City Hero Banner -->
+      <section id="cityHeroBanner" style="position: relative; min-height: 420px; display: flex; align-items: flex-end; padding: 4rem 0 3.5rem 0; color: #ffffff; background-size: cover; background-position: center;">
+        <div class="container" style="position: relative; z-index: 2; width: 100%;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <div id="cityBreadcrumbs"></div>
+            <a href="states.html" id="cityBackBtn" class="btn btn-sm btn-outline-white" style="text-decoration:none;">
+              &larr; Back to State
+            </a>
+          </div>
+
+          <div style="max-width: 800px;">
+            <span id="cityStateBadge" class="section-tag" style="background: rgba(255, 255, 255, 0.2); color: #fff; border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(8px);">
+              State, India
+            </span>
+            <h1 id="cityName" class="heading-display" style="font-size: 3.25rem; margin-bottom: 0.5rem; color: #ffffff;">
+              City Name
+            </h1>
+            <p id="cityKnownAs" style="font-size: 1.25rem; color: #ffedd5; font-weight: 500;">
+              Known As Tagline
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Travel Essentials & Visiting Guide -->
+      <div class="container" style="margin-top: -2.5rem; position: relative; z-index: 10;">
+        <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem 2rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color); display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;">
+          <div>
+            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Best Time to Visit</span>
+            <h4 id="cityBestTime" style="font-size: 1.1rem; color: var(--primary); margin-top: 0.25rem;">—</h4>
+          </div>
+          <div>
+            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Ideal Trip Duration</span>
+            <h4 id="cityIdealDuration" style="font-size: 1.1rem; color: var(--text-main); margin-top: 0.25rem;">—</h4>
+          </div>
+          <div style="grid-column: span 2;">
+            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Climate & Weather</span>
+            <p id="cityWeatherInfo" style="font-size: 0.95rem; color: var(--text-main); margin-top: 0.25rem; line-height: 1.4;">—</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- About City Overview -->
+      <section class="section" style="padding: 4rem 0 2rem 0;">
+        <div class="container">
+          <div style="max-width: 900px;">
+            <span class="section-tag">City Profile</span>
+            <h2 class="section-title heading-display">About the City</h2>
+            <p id="cityOverviewText" style="font-size: 1.125rem; line-height: 1.8; color: var(--text-main); margin-top: 1rem;">
+              Loading city details...
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- How to Reach Guide -->
+      <section class="section section-alt" style="padding: 3.5rem 0;">
+        <div class="container">
+          <div class="section-header text-left">
+            <span class="section-tag">Transit & Connectivity</span>
+            <h2 class="section-title heading-display">How to Reach</h2>
+            <p class="section-subtitle">Key transportation options to reach this destination comfortably.</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+            <!-- By Air -->
+            <div style="background: #fff; padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 2rem; margin-bottom: 0.75rem;">✈️</div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">By Air</h3>
+              <p id="reachAir" style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.5;">Loading airport info...</p>
+            </div>
+
+            <!-- By Train -->
+            <div style="background: #fff; padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 2rem; margin-bottom: 0.75rem;">🚆</div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">By Train</h3>
+              <p id="reachTrain" style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.5;">Loading railway info...</p>
+            </div>
+
+            <!-- By Road -->
+            <div style="background: #fff; padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 2rem; margin-bottom: 0.75rem;">🚗</div>
+              <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">By Road</h3>
+              <p id="reachRoad" style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.5;">Loading highway info...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Top Tourist Attractions in this City -->
+      <section class="section" id="cityPlacesSection">
+        <div class="container">
+          <div class="section-header text-left">
+            <span class="section-tag">Sightseeing & Itinerary</span>
+            <h2 class="section-title heading-display">Top Tourist Places <span id="cityPlacesCountLabel" style="font-size: 1.25rem; color: var(--text-muted); font-weight: 500;"></span></h2>
+            <p class="section-subtitle">Explore monuments, temples, gardens, and scenic points with verified entry timings and fees.</p>
+          </div>
+
+          <div class="places-grid" id="cityPlacesGrid">
+            <!-- Rendered via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Map & Google Maps Link -->
+      <section class="section section-alt">
+        <div class="container">
+          <div class="section-header text-left">
+            <span class="section-tag">Geographical Location</span>
+            <h2 class="section-title heading-display">City Map & Location</h2>
+            <p class="section-subtitle">Navigate the city layout and explore nearby transit points.</p>
+          </div>
+
+          <div style="background: #ffffff; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--shadow-md);">
+            <div style="height: 380px; width: 100%;">
+              <iframe 
+                id="cityMapEmbed" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="City Google Map Embed"
+              ></iframe>
+            </div>
+            <div style="padding: 1.25rem 1.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; background: #fff; border-top: 1px solid var(--border-color);">
+              <span style="font-size: 0.9375rem; color: var(--text-muted);">
+                Explore on live Google Maps for real-time traffic and walking routes.
+              </span>
+              <a href="#" target="_blank" rel="noopener noreferrer" id="openGoogleMapsBtn" class="btn btn-primary btn-sm">
+                Open in Google Maps <span>&rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nearby Destinations in the Same State -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header text-left">
+            <span class="section-tag">Extend Your Trip</span>
+            <h2 class="section-title heading-display">Nearby Cities & Destinations</h2>
+            <p class="section-subtitle">Plan a broader regional itinerary with other prominent travel spots nearby.</p>
+          </div>
+
+          <div class="cities-grid" id="nearbyCitiesGrid">
+            <!-- Rendered via JavaScript -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ================= SITE FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="logo-badge">TB</div>
+            <span>Travel<span class="brand-highlight">Bharat</span></span>
+          </div>
+          <p>TravelBharat is an independent tourism discovery platform showcasing India's rich heritage, diverse cultures, and stunning natural wonders.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Explore India</h4>
+          <div class="footer-links">
+            <a href="states.html">All 36 States & UTs</a>
+            <a href="search.html?filter=cities">200+ Cities</a>
+            <a href="experiences.html">Travel Experiences</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Search Places</a>
+            <a href="about.html">About TravelBharat</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Navigation</h4>
+          <p style="font-size: 0.875rem; color: #94a3b8; line-height: 1.6;">
+            Access full city travel guides, entry fees, timings, and directions across India.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 TravelBharat. Discover India. One Journey at a Time.</div>
+        <div><a href="index.html">Home</a> • <a href="states.html">All States</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Scroll to top">&uarr;</button>
+
+  <!-- ================= JAVASCRIPT MODULES ================= -->
+  <script src="data/images.js"></script>
+  <script src="data/experiences.js"></script>
+  <script src="data/states.js"></script>
+  <script src="data/cities.js"></script>
+  <script src="data/destinations.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/city.js"></script>
+</body>
+</html>

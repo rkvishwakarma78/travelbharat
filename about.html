@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About TravelBharat - India's Premier Tourism Discovery Platform. Discover our mission, architectural design, data accuracy strategy, and technical stack." />
+  <title>About TravelBharat – Explore India</title>
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ================= SITE HEADER ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="TravelBharat Homepage">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="states.html" class="nav-link">States & UTs</a>
+        <a href="search.html?filter=cities" class="nav-link">Cities</a>
+        <a href="experiences.html" class="nav-link">Experiences</a>
+        <a href="search.html" class="nav-link">Explore</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" onclick="window.location.href='search.html'" aria-label="Open Search">
+          <span class="search-icon">🔍</span>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <button type="button" class="mobile-toggle-btn" id="mobileToggle" aria-label="Toggle Mobile Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobileClose">&times;</button>
+    </div>
+    <nav class="mobile-nav-list">
+      <a href="index.html" class="mobile-nav-link">Home <span>&rarr;</span></a>
+      <a href="states.html" class="mobile-nav-link">States & UTs <span>&rarr;</span></a>
+      <a href="search.html?filter=cities" class="mobile-nav-link">Cities (200+) <span>&rarr;</span></a>
+      <a href="experiences.html" class="mobile-nav-link">Experiences <span>&rarr;</span></a>
+      <a href="search.html" class="mobile-nav-link">Explore & Search <span>&rarr;</span></a>
+      <a href="about.html" class="mobile-nav-link active">About Us <span>&rarr;</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact <span>&rarr;</span></a>
+    </nav>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+    <!-- Header Banner -->
+    <section style="background: linear-gradient(135deg, var(--secondary) 0%, #0d1435 100%); color: #ffffff; padding: 4rem 0 3rem 0;">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="breadcrumbs" style="color: #cbd5e1; margin-bottom: 1rem;">
+          <ol style="display:flex; align-items:center; gap:0.5rem;">
+            <li class="breadcrumb-item"><a href="index.html" style="color:#cbd5e1;">Home</a></li>
+            <span class="breadcrumb-sep">&rsaquo;</span>
+            <li class="breadcrumb-item current" style="color:#ffedd5;">About Us</li>
+          </ol>
+        </nav>
+
+        <h1 class="heading-display" style="font-size: 3rem; margin-bottom: 0.75rem; color: #ffffff;">
+          About TravelBharat
+        </h1>
+        <p style="font-size: 1.2rem; color: #ffedd5; max-width: 720px; font-weight: 500;">
+          Discover India. One Journey at a Time.
+        </p>
+      </div>
+    </section>
+
+    <!-- Mission & Story -->
+    <section class="section">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3.5rem; align-items: center;" class="about-grid">
+          <div>
+            <span class="section-tag">Our Mission</span>
+            <h2 class="section-title heading-display" style="text-align: left; margin-bottom: 1.25rem;">
+              Illuminating India's Boundless Heritage & Beauty
+            </h2>
+            <p style="font-size: 1.0625rem; line-height: 1.8; color: var(--text-main); margin-bottom: 1.25rem;">
+              <strong>TravelBharat</strong> was conceived to transform the way travelers, students, and culture enthusiasts discover the incredible diversity of India. From the snow-crowned Himalayas in Ladakh to the sun-kissed coastlines of Andaman and Kerala, India offers millennia of history, ancient architecture, and vibrant traditions.
+            </p>
+            <p style="font-size: 1.0625rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.5rem;">
+              Our platform bridges the gap between generic internet searches and meaningful tourism discovery by providing a structured, hierarchical exploration path: <strong>State &rarr; City &rarr; Landmark</strong>.
+            </p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;">
+              <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid var(--primary);">
+                <h4 style="font-size: 1.5rem; color: var(--primary); font-weight: 800; margin-bottom: 0.25rem;">36</h4>
+                <p style="font-size: 0.875rem; font-weight: 600; color: var(--text-main);">All 28 States & 8 UTs</p>
+              </div>
+              <div style="background: var(--bg-alt); padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid var(--secondary);">
+                <h4 style="font-size: 1.5rem; color: var(--secondary); font-weight: 800; margin-bottom: 0.25rem;">200+</h4>
+                <p style="font-size: 0.875rem; font-weight: 600; color: var(--text-main);">Major & Offbeat Cities</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual Showcase Card -->
+          <div style="background: #ffffff; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-xl); border: 1px solid var(--border-color); padding: 1.75rem;">
+            <img 
+              src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80" 
+              alt="Indian Heritage Architecture" 
+              loading="lazy" 
+              style="border-radius: var(--radius-lg); height: 260px; width: 100%; object-fit: cover; margin-bottom: 1.25rem;"
+              onerror="TravelBharatUI.handleImageError(this, 'heritage')"
+            />
+            <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Preserving Authentic Context</h3>
+            <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;">
+              Every entry in TravelBharat is structured with verified historical context, practical visiting guidelines, and deterministic landmark-matched cloud photography.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why We Built TravelBharat: Solving Data & Image Issues -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Engineering Rationale</span>
+          <h2 class="section-title heading-display">Why We Built TravelBharat</h2>
+          <p class="section-subtitle">Addressing the core shortcomings of conventional automated travel scrapers.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-box">❌ &rarr; ✅</div>
+            <h3 class="feature-title">Eliminating Thumbnail Scraper Bugs</h3>
+            <p class="feature-desc">
+              Generic scrapers often pull irrelevant Wikipedia thumbnails (e.g. university logos or emblems for city searches). TravelBharat uses an explicit ID-mapped image architecture directly connected to verified landmarks.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">🛡️</div>
+            <h3 class="feature-title">Deterministic Fallback Pipeline</h3>
+            <p class="feature-desc">
+              Every image element is backed by a 3-tier cloud fallback: Primary Source &rarr; Alternate Verified Photo &rarr; Thematic Category Fallback. There are zero broken image icons or empty boxes.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">🧭</div>
+            <h3 class="feature-title">Frictionless Hierarchical Routing</h3>
+            <p class="feature-desc">
+              Navigation is organized logically: <code>Home &rarr; State &rarr; City &rarr; Tourist Place</code>, complete with breadcrumbs and contextual back-navigation so users never feel lost.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">⚡</div>
+            <h3 class="feature-title">Debounced Multi-Facet Search</h3>
+            <p class="feature-desc">
+              Our in-memory search engine filters across places, cities, states, and 12 travel themes instantly with debouncing and zero layout lag.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology & Architecture -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Technical Foundation</span>
+          <h2 class="section-title heading-display">Technology & Architecture</h2>
+          <p class="section-subtitle">Engineered cleanly with modern web standards and zero heavy framework overhead.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.75rem;">
+          <!-- HTML5 & Semantic Web -->
+          <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm);">
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">🌐</div>
+            <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Semantic HTML5</h3>
+            <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.6;">
+              Structured using accessible HTML5 elements (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>) and ARIA attributes for screen readers.
+            </p>
+          </div>
+
+          <!-- Vanilla CSS3 Design Tokens -->
+          <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm);">
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">🎨</div>
+            <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Custom CSS3 Design Tokens</h3>
+            <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.6;">
+              Built entirely with Vanilla CSS variables, responsive Flexbox and Grid layouts, smooth cubic-bezier transitions, and media queries (360px to 1920px). No Bootstrap or Tailwind dependencies.
+            </p>
+          </div>
+
+          <!-- Modular ES6+ JavaScript -->
+          <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm);">
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">⚙️</div>
+            <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Modular ES6+ JavaScript</h3>
+            <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.6;">
+              Clean separation into Data Access Layer (<code>data.js</code>), UI Component Template Engine (<code>ui.js</code>), Search Engine (<code>search.js</code>), and View Controllers with URL parameter state.
+            </p>
+          </div>
+
+          <!-- Future Backend Readiness -->
+          <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm);">
+            <div style="font-size: 2rem; margin-bottom: 0.75rem;">🚀</div>
+            <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Future Backend Ready</h3>
+            <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.6;">
+              The Data Access Layer is designed so it can be swapped with Node.js/Express REST APIs and MongoDB databases without altering the frontend presentation layer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Important Academic & Tourism Disclaimer -->
+    <section class="section section-alt" style="padding: 3.5rem 0;">
+      <div class="container">
+        <div style="background: #ffffff; border-radius: var(--radius-lg); border-left: 6px solid var(--accent-gold); padding: 2rem 2.5rem; box-shadow: var(--shadow-md);">
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.75rem;">
+            📌 Academic Project & Tourism Verification Disclaimer
+          </h3>
+          <p style="font-size: 1rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem;">
+            <strong>TravelBharat – Explore India State by State</strong> is developed as an academic internship and portfolio project showcasing modern, responsive web development.
+          </p>
+          <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.7;">
+            While tourism information such as monument timings, entry fees, and visiting seasons is curated for this project, users are advised to verify the latest details with official tourism sources before travelling.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= SITE FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="logo-badge">TB</div>
+            <span>Travel<span class="brand-highlight">Bharat</span></span>
+          </div>
+          <p>TravelBharat is an independent tourism discovery platform showcasing India's rich heritage, diverse cultures, and stunning natural wonders.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Explore India</h4>
+          <div class="footer-links">
+            <a href="states.html">All 36 States & UTs</a>
+            <a href="search.html?filter=cities">200+ Cities</a>
+            <a href="experiences.html">Travel Experiences</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Advanced Search</a>
+            <a href="about.html">About TravelBharat</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Project Details</h4>
+          <p style="font-size: 0.875rem; color: #94a3b8; line-height: 1.6;">
+            Built with pure HTML5, CSS3, and ES6+ JavaScript. Clean, modular, and accessible.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 TravelBharat. Discover India. One Journey at a Time.</div>
+        <div><a href="index.html">Home</a> • <a href="states.html">States</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Scroll to top">&uarr;</button>
+
+  <!-- ================= JAVASCRIPT MODULES ================= -->
+  <script src="data/images.js"></script>
+  <script src="data/experiences.js"></script>
+  <script src="data/states.js"></script>
+  <script src="data/cities.js"></script>
+  <script src="data/destinations.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

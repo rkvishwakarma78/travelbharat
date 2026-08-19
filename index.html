@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TravelBharat - Explore India's 36 States & UTs, 200+ Cities, and 500+ Curated Tourist Destinations with Verified Information and Photography." />
+  <meta name="keywords" content="Travel India, India Tourism, Explore India, Taj Mahal, Rajasthan, Kerala, Goa, Himalayas, Indian States" />
+  <title>TravelBharat – Discover India. One Journey at a Time</title>
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ================= SITE HEADER & NAVIGATION ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo" aria-label="TravelBharat Homepage">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="states.html" class="nav-link">States & UTs</a>
+        <a href="search.html?filter=cities" class="nav-link">Cities</a>
+        <a href="experiences.html" class="nav-link">Experiences</a>
+        <a href="search.html" class="nav-link">Explore</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" id="navSearchBtn" onclick="window.location.href='search.html'" aria-label="Open Search">
+          <span class="search-icon">🔍</span>
+          <span>Search India...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        
+        <!-- Mobile Hamburger Toggle -->
+        <button type="button" class="mobile-toggle-btn" id="mobileToggle" aria-label="Toggle Mobile Navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobileClose" aria-label="Close Mobile Navigation">&times;</button>
+    </div>
+    <nav class="mobile-nav-list">
+      <a href="index.html" class="mobile-nav-link active">Home <span>&rarr;</span></a>
+      <a href="states.html" class="mobile-nav-link">States & UTs <span>&rarr;</span></a>
+      <a href="search.html?filter=cities" class="mobile-nav-link">Cities (200+) <span>&rarr;</span></a>
+      <a href="experiences.html" class="mobile-nav-link">Experiences <span>&rarr;</span></a>
+      <a href="search.html" class="mobile-nav-link">Explore & Search <span>&rarr;</span></a>
+      <a href="about.html" class="mobile-nav-link">About Us <span>&rarr;</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact & Inquiries <span>&rarr;</span></a>
+    </nav>
+    <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color); font-size: 0.8125rem; color: var(--text-muted);">
+      <p>🇮🇳 Curated Indian Tourism Platform</p>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <span>✨</span> India's Premier Tourism Discovery Platform
+        </div>
+        <h1 class="hero-title heading-display">
+          Discover India.<br />One Journey at a Time.
+        </h1>
+        <p class="hero-subtitle">
+          Explore all 36 States & Union Territories, 200+ historic cities, and iconic landmarks across the incredible subcontinent.
+        </p>
+
+        <!-- Live Instant Search Box -->
+        <div class="hero-search-wrapper">
+          <form class="hero-search-bar" id="heroSearchForm" onsubmit="return false;">
+            <div class="hero-search-icon">🔍</div>
+            <input 
+              type="text" 
+              class="hero-search-input" 
+              id="heroSearchInput" 
+              placeholder="Search destinations, cities, states, or experiences..." 
+              autocomplete="off"
+              aria-label="Search destinations in India"
+            />
+            <button type="button" class="btn btn-primary hero-search-btn" id="heroSearchBtn">
+              Explore India
+            </button>
+          </form>
+
+          <!-- Auto-suggestions Dropdown -->
+          <div class="search-suggestions-container" id="heroSuggestionsContainer" role="region" aria-live="polite"></div>
+        </div>
+
+        <!-- Quick Search Tags -->
+        <div class="hero-quick-tags">
+          <span class="quick-tag-label">Trending Searches:</span>
+          <a href="place.html?id=taj-mahal" class="quick-tag-item">Taj Mahal</a>
+          <a href="city.html?city=jaipur" class="quick-tag-item">Jaipur</a>
+          <a href="city.html?city=north-goa" class="quick-tag-item">Goa Beaches</a>
+          <a href="city.html?city=varanasi" class="quick-tag-item">Varanasi</a>
+          <a href="city.html?city=munnar" class="quick-tag-item">Munnar Tea Hills</a>
+          <a href="city.html?city=leh" class="quick-tag-item">Ladakh</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ANIMATED STATS BANNER -->
+    <div class="container">
+      <section class="stats-banner" aria-label="Tourism Platform Statistics">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number" data-target="36" data-suffix="">36</div>
+            <div class="stat-label">States & Union Territories</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="200" data-suffix="+">200+</div>
+            <div class="stat-label">Curated Tourist Cities</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="500" data-suffix="+">500+</div>
+            <div class="stat-label">Verified Attractions</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="12" data-suffix="+">12+</div>
+            <div class="stat-label">Travel Experiences</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 3. POPULAR TOURIST DESTINATIONS -->
+    <section class="section" id="popularDestinations">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Iconic Landmarks</span>
+          <h2 class="section-title heading-display">Popular Destinations in India</h2>
+          <p class="section-subtitle">Must-visit historical marvels, spiritual sanctuaries, and natural wonders loved by travellers worldwide.</p>
+        </div>
+
+        <!-- Filter Tabs for Popular Destinations -->
+        <div class="filter-tabs-wrapper" id="popularTabs" style="justify-content: center;">
+          <button type="button" class="tab-btn active" data-category="all">All Highlights</button>
+          <button type="button" class="tab-btn" data-category="heritage">Heritage & Forts</button>
+          <button type="button" class="tab-btn" data-category="nature">Nature & Valleys</button>
+          <button type="button" class="tab-btn" data-category="beaches">Beaches</button>
+          <button type="button" class="tab-btn" data-category="spiritual">Spiritual</button>
+        </div>
+
+        <!-- Dynamic Destination Cards Grid -->
+        <div class="places-grid" id="popularPlacesContainer">
+          <!-- Rendered dynamically via JavaScript -->
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="search.html" class="btn btn-outline btn-lg">
+            View All 500+ Tourist Destinations &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. EXPLORE BY EXPERIENCE -->
+    <section class="section section-alt" id="experiencesSection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Travel Themes</span>
+          <h2 class="section-title heading-display">Explore by Travel Experience</h2>
+          <p class="section-subtitle">Whether you seek adrenaline-pumping adventures, serene backwaters, or royal heritage trails.</p>
+        </div>
+
+        <div class="experiences-grid" id="experiencesGridContainer">
+          <!-- Rendered dynamically via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. EXPLORE BY STATE (REGIONAL DISCOVERY) -->
+    <section class="section" id="statesSection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">State-Wise Discovery</span>
+          <h2 class="section-title heading-display">Explore India State-by-State</h2>
+          <p class="section-subtitle">From the snow-clad peaks of the Himalayas to the tropical shores of the Indian Ocean.</p>
+        </div>
+
+        <div class="states-grid" id="statesGridContainer">
+          <!-- Rendered dynamically via JavaScript -->
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="states.html" class="btn btn-primary btn-lg">
+            Explore All 28 States & 8 Union Territories &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. HIDDEN GEMS & OFFBEAT DISCOVERIES -->
+    <section class="section section-alt" id="hiddenGemsSection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" style="background: var(--accent-gold-light); color: var(--accent-terracotta);">Off the Beaten Track</span>
+          <h2 class="section-title heading-display">Hidden Gems of Incredible India</h2>
+          <p class="section-subtitle">Step away from the crowds and discover lesser-known archaeological wonders, pristine valleys, and serene hamlets.</p>
+        </div>
+
+        <div class="places-grid" id="hiddenGemsContainer">
+          <!-- Rendered dynamically via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. WHY TRAVELBHARAT -->
+    <section class="section" id="whyTravelBharat">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Platform Features</span>
+          <h2 class="section-title heading-display">Why Choose TravelBharat?</h2>
+          <p class="section-subtitle">Designed to provide verified, reliable, and beautifully organized tourism intelligence for every explorer.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-box">🗺️</div>
+            <h3 class="feature-title">State-Wise Exploration</h3>
+            <p class="feature-desc">Hierarchical routing from State &rarr; City &rarr; Tourist Place ensures you always understand the regional context.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">📸</div>
+            <h3 class="feature-title">Verified Landmark Imagery</h3>
+            <p class="feature-desc">Every destination features genuine high-resolution cloud photography with a robust 3-tier fallback pipeline.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">⚡</div>
+            <h3 class="feature-title">Instant Smart Search</h3>
+            <p class="feature-desc">Search by monument name, state, city, or experience theme with instant debounced auto-suggestions.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-box">🕒</div>
+            <h3 class="feature-title">Verified Visiting Info</h3>
+            <p class="feature-desc">Reliable entry fees, opening hours, best visiting seasons, and direct Google Maps navigation coordinates.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. CALL TO ACTION (CTA) -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="cta-banner">
+          <h2 class="cta-title heading-display">Your Next Indian Adventure Starts Here.</h2>
+          <p class="cta-subtitle">
+            Immerse yourself in centuries of royal history, diverse cultures, scenic landscapes, and timeless spirituality.
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="states.html" class="btn btn-primary btn-lg">Browse States &rarr;</a>
+            <a href="experiences.html" class="btn btn-outline-white btn-lg">Explore Experiences</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= SITE FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Info -->
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="logo-badge">TB</div>
+            <span>Travel<span class="brand-highlight">Bharat</span></span>
+          </div>
+          <p>
+            TravelBharat is an independent tourism discovery platform showcasing India's rich heritage, diverse cultures, and stunning natural wonders.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Twitter">🕊️</a>
+            <a href="#" class="social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" aria-label="YouTube">▶️</a>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="footer-column">
+          <h4>Explore India</h4>
+          <div class="footer-links">
+            <a href="states.html">All 36 States & UTs</a>
+            <a href="search.html?filter=cities">Top Tourist Cities</a>
+            <a href="experiences.html">Travel Experiences</a>
+            <a href="search.html?q=heritage">Heritage & Forts</a>
+            <a href="search.html?q=beach">Coastal & Beaches</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Advanced Search</a>
+            <a href="about.html">About TravelBharat</a>
+            <a href="contact.html">Contact & Feedback</a>
+          </div>
+        </div>
+
+        <!-- Project & Tech Info -->
+        <div class="footer-column">
+          <h4>College Project Info</h4>
+          <p style="font-size: 0.875rem; color: #94a3b8; line-height: 1.6; margin-bottom: 1rem;">
+            Built with Vanilla HTML5, CSS3 & ES6+ JavaScript. Designed for modular scalability and clean portfolio demonstration.
+          </p>
+          <a href="about.html" class="btn btn-outline-white btn-sm">Project Details &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Informational Disclaimer -->
+      <div class="disclaimer-box">
+        <strong>⚠️ Travel Advisory Notice:</strong> TravelBharat is an educational tourism information platform. While we strive to maintain accurate timings and entry fees, users are advised to verify details with official state tourism departments before traveling.
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 TravelBharat. Discover India. One Journey at a Time.</div>
+        <div>
+          <a href="about.html">Architecture</a> • 
+          <a href="contact.html">Inquiries</a> • 
+          <a href="states.html">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Scroll to top of page">
+    &uarr;
+  </button>
+
+  <!-- ================= JAVASCRIPT MODULES ================= -->
+  <script src="data/images.js"></script>
+  <script src="data/experiences.js"></script>
+  <script src="data/states.js"></script>
+  <script src="data/cities.js"></script>
+  <script src="data/destinations.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Homepage Dynamic Rendering Controller -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initialize Hero Auto-suggestions
+      TravelBharatSearch.initSuggestions('heroSearchInput', 'heroSuggestionsContainer');
+
+      const heroBtn = document.getElementById('heroSearchBtn');
+      if (heroBtn) {
+        heroBtn.addEventListener('click', () => {
+          const val = document.getElementById('heroSearchInput').value.trim();
+          window.location.href = val ? `search.html?q=${encodeURIComponent(val)}` : 'search.html';
+        });
+      }
+
+      // 2. Render Popular Destinations
+      function renderPopular(category = 'all') {
+        const container = document.getElementById('popularPlacesContainer');
+        if (!container) return;
+
+        let places = TravelBharatData.getPopularPlaces();
+        if (category !== 'all') {
+          places = places.filter(p => p.category.toLowerCase() === category.toLowerCase());
+        }
+
+        if (places.length === 0) {
+          places = TravelBharatData.getAllDestinations().slice(0, 6);
+        }
+
+        container.innerHTML = places.slice(0, 8).map(p => TravelBharatUI.createPlaceCard(p)).join('');
+      }
+
+      renderPopular('all');
+
+      // Popular Tabs Filter
+      const tabBtns = document.querySelectorAll('#popularTabs .tab-btn');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const cat = btn.getAttribute('data-category');
+          renderPopular(cat);
+        });
+      });
+
+      // 3. Render Experiences
+      const expContainer = document.getElementById('experiencesGridContainer');
+      if (expContainer) {
+        const exps = TravelBharatData.getAllExperiences();
+        expContainer.innerHTML = exps.slice(0, 8).map(e => TravelBharatUI.createExperienceCard(e)).join('');
+      }
+
+      // 4. Render Featured States
+      const statesContainer = document.getElementById('statesGridContainer');
+      if (statesContainer) {
+        const states = TravelBharatData.getAllStates();
+        // Featured selection across regions
+        const featuredIds = ['rajasthan', 'kerala', 'himachal-pradesh', 'goa', 'ladakh', 'meghalaya', 'uttar-pradesh', 'karnataka'];
+        const featuredStates = states.filter(s => featuredIds.includes(s.id));
+        statesContainer.innerHTML = featuredStates.map(s => TravelBharatUI.createStateCard(s)).join('');
+      }
+
+      // 5. Render Hidden Gems
+      const gemsContainer = document.getElementById('hiddenGemsContainer');
+      if (gemsContainer) {
+        const gems = TravelBharatData.getHiddenGems();
+        const displayGems = gems.length > 0 ? gems : TravelBharatData.getAllDestinations().slice(0, 4);
+        gemsContainer.innerHTML = displayGems.map(g => TravelBharatUI.createPlaceCard(g)).join('');
+      }
+    });
+  </script>
+</body>
+</html>

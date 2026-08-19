@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TravelBharat Admin Dashboard - Manage Indian Tourist Destinations, Cities, Tariffs, and User Inquiries." />
+  <title>Admin Dashboard – TravelBharat</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+
+  <!-- Self-Contained Complete Design System & Styles -->
+  <style>
+    :root {
+      --primary: #c2410c;
+      --primary-hover: #9a3412;
+      --primary-light: #ffedd5;
+      --secondary: #0f172a;
+      --accent: #d97706;
+      --bg-main: #ffffff;
+      --bg-alt: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --border-light: #f1f5f9;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08);
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-main);
+      background: var(--bg-alt);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    /* Site Header */
+    .site-header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.85rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+    .header-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--secondary);
+      letter-spacing: -0.02em;
+    }
+    .logo-badge {
+      background: linear-gradient(135deg, var(--primary), #ea580c);
+      color: #ffffff;
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+    .brand-highlight { color: var(--primary); }
+
+    .admin-header-badge {
+      background: #ef4444;
+      color: #ffffff;
+      font-size: 0.725rem;
+      font-weight: 800;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(194, 65, 12, 0.2);
+    }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-outline {
+      background: transparent;
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+    .btn-outline:hover { background: #f1f5f9; }
+    .btn-sm { padding: 0.4rem 0.85rem; font-size: 0.8125rem; }
+
+    /* Admin Container */
+    .admin-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2.25rem 1.5rem 4rem 1.5rem;
+    }
+
+    .heading-display {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .metric-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      padding: 1.5rem;
+    }
+    .metric-label {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .metric-value {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-top: 0.35rem;
+      line-height: 1;
+    }
+
+    /* Tabs */
+    .admin-tabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--border-color);
+      margin-bottom: 2rem;
+      overflow-x: auto;
+    }
+    .admin-tab-btn {
+      padding: 0.85rem 1.5rem;
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      margin-bottom: -2px;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .admin-tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* Cards & Tables */
+    .admin-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+    }
+    .admin-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.875rem;
+    }
+    .admin-table th {
+      background: #f8fafc;
+      padding: 0.85rem 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+    }
+    .admin-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: middle;
+    }
+    .admin-table tr:hover td { background: #f8fafc; }
+
+    /* Action Buttons */
+    .action-btn-sm {
+      padding: 0.35rem 0.65rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: inherit;
+    }
+    .btn-edit { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+    .btn-edit:hover { background: #dbeafe; }
+    .btn-delete { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+    .btn-delete:hover { background: #fee2e2; }
+
+    .badge-category {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.725rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: var(--secondary);
+    }
+
+    /* Forms */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border-color);
+      font-size: 0.9375rem;
+      background: #fff;
+      font-family: inherit;
+      color: var(--text-main);
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    #toastNotification {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 0.85rem 1.35rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      font-size: 0.875rem;
+      font-weight: 600;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= SITE HEADER ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo" id="homeLogoLink" onclick="navigateToHome(event)">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </a>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span class="admin-header-badge">Admin Panel</span>
+        <a href="../index.html" id="viewWebsiteBtn" class="btn btn-sm btn-outline" onclick="navigateToHome(event)">View Website &rarr;</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN ADMIN CONTENT ================= -->
+  <main>
+    <div class="admin-container">
+
+      <!-- Admin Top Banner -->
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+        <div>
+          <h1 class="heading-display" style="font-size: 2.25rem; margin-bottom: 0.25rem;">Content Management Dashboard</h1>
+          <p style="color: var(--text-muted); font-size: 0.9375rem;">Manage Indian tourist places, verified opening hours, entry tariffs, and user feedback.</p>
+        </div>
+        <button type="button" class="btn btn-primary" id="btnTopAddDestination">
+          + Add New Destination
+        </button>
+      </div>
+
+      <!-- Quick Metrics Counters -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-label">Total Destinations</span>
+          <div id="statTotalDestinations" class="metric-value" style="color: var(--primary);">500+</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Total Cities</span>
+          <div id="statTotalCities" class="metric-value" style="color: var(--secondary);">200+</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">States & UTs</span>
+          <div id="statTotalStates" class="metric-value" style="color: #059669;">36</div>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">User Inquiries</span>
+          <div id="statTotalInquiries" class="metric-value" style="color: #7c3aed;">0</div>
+        </div>
+      </div>
+
+      <!-- Admin Tab Navigation -->
+      <div class="admin-tabs">
+        <button type="button" class="admin-tab-btn active" id="tab-destinations-btn">
+          📍 All Destinations
+        </button>
+        <button type="button" class="admin-tab-btn" id="tab-add-destination-btn">
+          ➕ Add Destination
+        </button>
+        <button type="button" class="admin-tab-btn" id="tab-inquiries-btn">
+          ✉️ User Inquiries <span id="inquiryCountBadge" style="background:#ef4444; color:#fff; font-size:0.7rem; padding:0.15rem 0.45rem; border-radius:10px; display:none;">0</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: MANAGE DESTINATIONS -->
+      <section id="tab-destinations" class="admin-tab-content">
+        <div class="admin-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="flex: 1; max-width: 400px; position: relative;">
+              <input 
+                type="text" 
+                id="adminSearchInput" 
+                placeholder="Search places by name or state..." 
+                class="form-control"
+              />
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+              <select id="adminCategoryFilter" class="form-control" style="width: auto;">
+                <option value="all">All Categories</option>
+                <option value="Heritage">Heritage</option>
+                <option value="Nature">Nature</option>
+                <option value="Spiritual">Spiritual</option>
+                <option value="Beaches">Beaches</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Wildlife">Wildlife</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Destination Name</th>
+                  <th>State & City</th>
+                  <th>Category</th>
+                  <th>Timings</th>
+                  <th>Entry Fee</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminDestinationsTableBody">
+                <tr>
+                  <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">Loading destinations catalog...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: ADD / EDIT DESTINATION FORM -->
+      <section id="tab-add-destination" class="admin-tab-content" style="display: none;">
+        <div class="admin-card">
+          <h2 id="formHeaderTitle" style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">Add New Tourist Place</h2>
+          <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.5rem;">Provide verified information to publish across TravelBharat search and state pages.</p>
+
+          <form id="destinationForm">
+            <input type="hidden" id="destEditId" value="" />
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="destName">Destination Name *</label>
+                <input type="text" id="destName" class="form-control" placeholder="e.g. Hawa Mahal" required />
+              </div>
+
+              <div class="form-group">
+                <label for="destCategory">Experience Category *</label>
+                <select id="destCategory" class="form-control" required>
+                  <option value="Heritage">Heritage & Forts</option>
+                  <option value="Nature">Nature & Valleys</option>
+                  <option value="Spiritual">Spiritual & Temples</option>
+                  <option value="Beaches">Beaches & Coastal</option>
+                  <option value="Adventure">Adventure & Trekking</option>
+                  <option value="Wildlife">Wildlife & Safaris</option>
+                  <option value="Romantic">Romantic Escapes</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="destState">State / UT *</label>
+                <select id="destState" class="form-control" required>
+                  <option value="rajasthan">Rajasthan</option>
+                  <option value="goa">Goa</option>
+                  <option value="uttarakhand">Uttarakhand</option>
+                  <option value="kerala">Kerala</option>
+                  <option value="himachal-pradesh">Himachal Pradesh</option>
+                  <option value="tamil-nadu">Tamil Nadu</option>
+                  <option value="uttar-pradesh">Uttar Pradesh</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="destCity">City Name / Slug *</label>
+                <input type="text" id="destCity" class="form-control" placeholder="e.g. jaipur" required />
+              </div>
+
+              <div class="form-group">
+                <label for="destTimings">Visiting Hours *</label>
+                <input type="text" id="destTimings" class="form-control" placeholder="e.g. 09:00 AM - 05:00 PM" required />
+              </div>
+
+              <div class="form-group">
+                <label for="destEntryFee">Entry Tariffs *</label>
+                <input type="text" id="destEntryFee" class="form-control" placeholder="e.g. ₹50 (Indians), ₹200 (Foreigners)" required />
+              </div>
+
+              <div class="form-group">
+                <label for="destBestTime">Best Time to Visit</label>
+                <input type="text" id="destBestTime" class="form-control" placeholder="e.g. October to March" />
+              </div>
+
+              <div class="form-group">
+                <label for="destLocation">Official Address / Location</label>
+                <input type="text" id="destLocation" class="form-control" placeholder="e.g. Badi Choupad, Pink City, Jaipur" />
+              </div>
+
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label for="destImage">Primary High-Res Image URL (Cloud CDN / Unsplash) *</label>
+                <input type="url" id="destImage" class="form-control" placeholder="https://images.unsplash.com/..." required />
+              </div>
+
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label for="destTags">Keywords & Tags (Comma Separated)</label>
+                <input type="text" id="destTags" class="form-control" placeholder="e.g. Rajput, Fort, UNESCO, Royal Palace" />
+              </div>
+
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label for="destDescription">Detailed Overview Description *</label>
+                <textarea id="destDescription" rows="4" class="form-control" placeholder="Provide accurate architectural and tourism details..." required></textarea>
+              </div>
+
+              <div class="form-group" style="grid-column: 1 / -1;">
+                <label for="destHistory">Historical & Cultural Background</label>
+                <textarea id="destHistory" rows="3" class="form-control" placeholder="Historic era, commissioning dynasty, or cultural significance..."></textarea>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1.5rem; margin: 1.25rem 0;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; cursor: pointer;">
+                <input type="checkbox" id="destIsPopular" /> Feature as Popular Destination
+              </label>
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 600; cursor: pointer;">
+                <input type="checkbox" id="destIsHiddenGem" /> Mark as Hidden Gem
+              </label>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+              <button type="submit" class="btn btn-primary" id="destFormSubmitBtn">Save & Publish Destination</button>
+              <button type="button" class="btn btn-outline" id="btnCancelForm">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- TAB 3: USER INQUIRIES & FEEDBACK -->
+      <section id="tab-inquiries" class="admin-tab-content" style="display: none;">
+        <div class="admin-card">
+          <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">User Inquiries & Feedback</h2>
+          <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.5rem;">Direct feedback received from travelers and evaluators via the Contact Us portal.</p>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Date & Time</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Subject</th>
+                  <th>Destination Ref</th>
+                  <th>Message</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminInquiriesTableBody">
+                <tr>
+                  <td colspan="7" style="text-align: center; padding: 2rem; color: var(--text-muted);">No inquiries found.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="toastNotification">✨ Operation Completed!</div>
+
+  <!-- Attempt External Script Loading -->
+  <script src="../data/states.js" onerror="this.onerror=null; this.src='data/states.js';"></script>
+  <script src="../data/cities.js" onerror="this.onerror=null; this.src='data/cities.js';"></script>
+  <script src="../data/destinations.js" onerror="this.onerror=null; this.src='data/destinations.js';"></script>
+  <script src="../js/data.js" onerror="this.onerror=null; this.src='js/data.js';"></script>
+
+  <!-- ================= EMBEDDED COMPLETE CONTROLLER ================= -->
+  <script>
+    // Bulletproof Navigation to Homepage
+    function navigateToHome(e) {
+      if (e) e.preventDefault();
+      const currentPath = window.location.pathname.toLowerCase();
+      if (currentPath.includes('/backend') || currentPath.includes('\\backend')) {
+        window.location.href = '../index.html';
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Elements
+      const stateSelect = document.getElementById('destState');
+      const destinationsTbody = document.getElementById('adminDestinationsTableBody');
+      const inquiriesTbody = document.getElementById('adminInquiriesTableBody');
+      const destForm = document.getElementById('destinationForm');
+      const searchInput = document.getElementById('adminSearchInput');
+      const catFilter = document.getElementById('adminCategoryFilter');
+      const btnTopAdd = document.getElementById('btnTopAddDestination');
+      const btnCancel = document.getElementById('btnCancelForm');
+
+      let allDestinations = [];
+
+      function showToast(msg) {
+        const toast = document.getElementById('toastNotification');
+        if (toast) {
+          toast.textContent = msg;
+          toast.style.display = 'flex';
+          setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        }
+      }
+
+      // 2. Tab Switching Function
+      window.switchTab = function(tabId) {
+        document.querySelectorAll('.admin-tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.admin-tab-content').forEach(content => content.style.display = 'none');
+
+        const activeBtn = document.getElementById(`tab-${tabId}-btn`);
+        const activeContent = document.getElementById(`tab-${tabId}`);
+
+        if (activeBtn) activeBtn.classList.add('active');
+        if (activeContent) activeContent.style.display = 'block';
+
+        if (tabId === 'destinations') renderDestinationsTable(allDestinations);
+        if (tabId === 'inquiries') loadInquiries();
+      };
+
+      // Direct button bindings
+      document.getElementById('tab-destinations-btn').onclick = () => switchTab('destinations');
+      document.getElementById('tab-add-destination-btn').onclick = () => switchTab('add-destination');
+      document.getElementById('tab-inquiries-btn').onclick = () => switchTab('inquiries');
+      if (btnTopAdd) btnTopAdd.onclick = () => switchTab('add-destination');
+      if (btnCancel) btnCancel.onclick = () => { resetDestForm(); switchTab('destinations'); };
+
+      // 3. Populate States Dropdown
+      function populateStates() {
+        let states = [];
+        if (typeof TravelBharatStates !== 'undefined') {
+          states = TravelBharatStates;
+        } else if (typeof TravelBharatData !== 'undefined' && TravelBharatData.getAllStates) {
+          states = TravelBharatData.getAllStates();
+        }
+
+        if (stateSelect && states.length > 0) {
+          stateSelect.innerHTML = states.map(s => `
+            <option value="${s.id}">${s.name} (${s.type === 'ut' ? 'UT' : s.region})</option>
+          `).join('');
+        }
+      }
+
+      // 4. Fallback Sample Data
+      const fallbackSampleDestinations = [
+        {
+          id: 'taj-mahal',
+          name: 'Taj Mahal',
+          stateId: 'uttar-pradesh',
+          cityId: 'agra',
+          category: 'Heritage',
+          timings: '06:00 AM - 06:30 PM (Closed Fridays)',
+          entryFee: '₹50 (Indians), ₹1100 (Foreigners)',
+          image: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80',
+          isPopular: true
+        },
+        {
+          id: 'hawa-mahal',
+          name: 'Hawa Mahal',
+          stateId: 'rajasthan',
+          cityId: 'jaipur',
+          category: 'Heritage',
+          timings: '09:00 AM - 05:00 PM',
+          entryFee: '₹50 (Indians), ₹200 (Foreigners)',
+          image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80',
+          isPopular: true
+        },
+        {
+          id: 'calangute-beach',
+          name: 'Calangute Beach',
+          stateId: 'goa',
+          cityId: 'north-goa',
+          category: 'Beaches',
+          timings: '24 Hours Open',
+          entryFee: 'Free Entry',
+          image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80',
+          isPopular: true
+        },
+        {
+          id: 'meenakshi-temple',
+          name: 'Meenakshi Amman Temple',
+          stateId: 'tamil-nadu',
+          cityId: 'madurai',
+          category: 'Spiritual',
+          timings: '05:00 AM - 12:30 PM, 04:00 PM - 09:30 PM',
+          entryFee: 'Free (Special Darshan ₹50)',
+          image: 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=800&q=80',
+          isPopular: true
+        },
+        {
+          id: 'pangong-tso',
+          name: 'Pangong Tso Lake',
+          stateId: 'ladakh',
+          cityId: 'leh',
+          category: 'Nature',
+          timings: 'Daytime visits recommended',
+          entryFee: 'Nominal Inner Line Permit (ILP)',
+          image: 'https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?auto=format&fit=crop&w=800&q=80',
+          isHiddenGem: true
+        }
+      ];
+
+      // 5. Load Data
+      async function loadAllData() {
+        populateStates();
+
+        if (typeof TravelBharatDestinations !== 'undefined' && TravelBharatDestinations.length > 0) {
+          allDestinations = [...TravelBharatDestinations];
+        } else if (typeof TravelBharatData !== 'undefined' && TravelBharatData.getAllPlaces) {
+          allDestinations = [...TravelBharatData.getAllPlaces()];
+        } else {
+          allDestinations = [...fallbackSampleDestinations];
+        }
+
+        updateStats();
+        renderDestinationsTable(allDestinations);
+
+        try {
+          const res = await fetch('/api/destinations?limit=1000');
+          if (res.ok) {
+            const json = await res.json();
+            if (json.data && json.data.length > 0) {
+              allDestinations = json.data;
+              updateStats();
+              renderDestinationsTable(allDestinations);
+            }
+          }
+        } catch (e) {}
+      }
+
+      function renderDestinationsTable(list) {
+        if (!destinationsTbody) return;
+
+        if (!list || list.length === 0) {
+          destinationsTbody.innerHTML = `
+            <tr>
+              <td colspan="6" style="text-align:center; padding:2.5rem; color:var(--text-muted); font-weight:600;">
+                No tourist places found matching your filter criteria.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        destinationsTbody.innerHTML = list.map(place => {
+          return `
+            <tr>
+              <td>
+                <div style="display:flex; align-items:center; gap:0.75rem;">
+                  <img 
+                    src="${place.image}" 
+                    alt="${place.name}" 
+                    style="width:44px; height:44px; border-radius:var(--radius-sm); object-fit:cover; background:#e2e8f0;"
+                    onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=400&q=80';"
+                  />
+                  <div>
+                    <strong style="color:var(--text-main); font-size:0.95rem; display:block;">${place.name}</strong>
+                    ${place.isPopular ? '<span style="font-size:0.7rem; background:#ffedd5; color:#c2410c; padding:0.1rem 0.4rem; border-radius:4px; font-weight:700;">Popular</span>' : ''}
+                    ${place.isHiddenGem ? '<span style="font-size:0.7rem; background:#dcfce7; color:#15803d; padding:0.1rem 0.4rem; border-radius:4px; font-weight:700; margin-left:0.2rem;">Hidden Gem</span>' : ''}
+                  </div>
+                </div>
+              </td>
+              <td><span style="font-weight:600; text-transform:capitalize;">${place.cityId || '—'}</span>, <span style="color:var(--text-muted); text-transform:capitalize;">${place.stateId || ''}</span></td>
+              <td><span class="badge-category">${place.category || 'Heritage'}</span></td>
+              <td style="color:var(--text-muted); font-size:0.8125rem;">${place.timings || '09:00 AM - 05:00 PM'}</td>
+              <td style="font-weight:700; color:var(--primary);">${place.entryFee || 'Free'}</td>
+              <td>
+                <div style="display:flex; gap:0.4rem;">
+                  <button type="button" class="action-btn-sm btn-edit" onclick="editDestination('${place.id}')">✏️ Edit</button>
+                  <button type="button" class="action-btn-sm btn-delete" onclick="deleteDestination('${place.id}', '${(place.name || '').replace(/'/g, "\\'")}')">🗑️ Delete</button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // 6. Search & Filter
+      function filterDestinations() {
+        const q = (searchInput ? searchInput.value : '').trim().toLowerCase();
+        const cat = (catFilter ? catFilter.value : 'all');
+
+        let filtered = allDestinations;
+
+        if (cat !== 'all') {
+          filtered = filtered.filter(p => (p.category || '').toLowerCase() === cat.toLowerCase());
+        }
+
+        if (q) {
+          filtered = filtered.filter(p =>
+            (p.name || '').toLowerCase().includes(q) ||
+            (p.stateId || '').toLowerCase().includes(q) ||
+            (p.cityId || '').toLowerCase().includes(q) ||
+            (p.category || '').toLowerCase().includes(q)
+          );
+        }
+
+        renderDestinationsTable(filtered);
+      }
+
+      if (searchInput) searchInput.addEventListener('input', filterDestinations);
+      if (catFilter) catFilter.addEventListener('change', filterDestinations);
+
+      // 7. Add / Edit Form Submit
+      if (destForm) {
+        destForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const editId = document.getElementById('destEditId').value;
+          const name = document.getElementById('destName').value.trim();
+          const category = document.getElementById('destCategory').value;
+          const stateId = document.getElementById('destState').value;
+          const cityId = document.getElementById('destCity').value.trim().toLowerCase();
+          const timings = document.getElementById('destTimings').value.trim();
+          const entryFee = document.getElementById('destEntryFee').value.trim();
+          const bestTime = document.getElementById('destBestTime').value.trim();
+          const location = document.getElementById('destLocation').value.trim();
+          const image = document.getElementById('destImage').value.trim();
+          const tagsStr = document.getElementById('destTags').value.trim();
+          const description = document.getElementById('destDescription').value.trim();
+          const history = document.getElementById('destHistory').value.trim();
+          const isPopular = document.getElementById('destIsPopular').checked;
+          const isHiddenGem = document.getElementById('destIsHiddenGem').checked;
+
+          const tags = tagsStr ? tagsStr.split(',').map(t => t.trim()) : [];
+          const slugId = editId || name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+          const payload = {
+            id: slugId,
+            name,
+            category,
+            stateId,
+            cityId,
+            timings,
+            entryFee,
+            bestTime,
+            location,
+            image,
+            tags,
+            description,
+            history,
+            isPopular,
+            isHiddenGem
+          };
+
+          try {
+            const url = editId ? `/api/destinations/${editId}` : `/api/destinations`;
+            const method = editId ? 'PUT' : 'POST';
+
+            await fetch(url, {
+              method,
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+          } catch(err) {}
+
+          if (editId) {
+            const idx = allDestinations.findIndex(p => p.id === editId);
+            if (idx !== -1) allDestinations[idx] = payload;
+          } else {
+            allDestinations.unshift(payload);
+          }
+
+          showToast(editId ? `Updated '${name}'!` : `Published '${name}'!`);
+          resetDestForm();
+          switchTab('destinations');
+          updateStats();
+        });
+      }
+
+      // Edit Helper
+      window.editDestination = function(id) {
+        const place = allDestinations.find(p => p.id === id);
+        if (!place) return;
+
+        document.getElementById('formHeaderTitle').textContent = `Edit Destination: ${place.name}`;
+        document.getElementById('destFormSubmitBtn').textContent = 'Update Destination';
+        document.getElementById('destEditId').value = place.id;
+        document.getElementById('destName').value = place.name;
+        document.getElementById('destCategory').value = place.category;
+        document.getElementById('destState').value = place.stateId;
+        document.getElementById('destCity').value = place.cityId;
+        document.getElementById('destTimings').value = place.timings || '';
+        document.getElementById('destEntryFee').value = place.entryFee || '';
+        document.getElementById('destBestTime').value = place.bestTime || '';
+        document.getElementById('destLocation').value = place.location || '';
+        document.getElementById('destImage').value = place.image || '';
+        document.getElementById('destTags').value = Array.isArray(place.tags) ? place.tags.join(', ') : '';
+        document.getElementById('destDescription').value = place.description || '';
+        document.getElementById('destHistory').value = place.history || '';
+        document.getElementById('destIsPopular').checked = !!place.isPopular;
+        document.getElementById('destIsHiddenGem').checked = !!place.isHiddenGem;
+
+        switchTab('add-destination');
+      };
+
+      // Delete Helper
+      window.deleteDestination = async function(id, name) {
+        if (!confirm(`Are you sure you want to delete '${name}'?`)) return;
+
+        try {
+          await fetch(`/api/destinations/${id}`, { method: 'DELETE' });
+        } catch (e) {}
+
+        allDestinations = allDestinations.filter(p => p.id !== id);
+        renderDestinationsTable(allDestinations);
+        updateStats();
+        showToast(`Deleted '${name}'`);
+      };
+
+      window.resetDestForm = function() {
+        if (destForm) destForm.reset();
+        document.getElementById('destEditId').value = '';
+        document.getElementById('formHeaderTitle').textContent = 'Add New Tourist Place';
+        document.getElementById('destFormSubmitBtn').textContent = 'Save & Publish Destination';
+      };
+
+      // 8. Inquiries
+      function loadInquiries() {
+        let inquiries = [];
+        const local = localStorage.getItem('travelbharat_inquiries');
+        if (local) {
+          try { inquiries = JSON.parse(local); } catch(e) {}
+        }
+
+        if (!inquiriesTbody) return;
+
+        if (inquiries.length === 0) {
+          inquiriesTbody.innerHTML = `
+            <tr>
+              <td colspan="7" style="text-align:center; padding:2.5rem; color:var(--text-muted); font-weight:600;">
+                No user inquiries received yet. Submit the Contact Us form to test live updates!
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        inquiriesTbody.innerHTML = inquiries.map((inq, idx) => `
+          <tr>
+            <td style="color:var(--text-muted); white-space:nowrap; font-size:0.8125rem;">
+              ${inq.timestamp || 'Recent'}
+            </td>
+            <td><strong>${inq.name}</strong></td>
+            <td style="color:var(--text-muted);">${inq.email}</td>
+            <td><span class="badge-category" style="background:#475569;">${inq.subject}</span></td>
+            <td style="color:var(--primary); font-weight:700;">${inq.place || '—'}</td>
+            <td style="max-width:250px; color:var(--text-main); font-size:0.85rem;">${inq.message}</td>
+            <td>
+              <button type="button" class="action-btn-sm btn-delete" onclick="deleteInquiry('${idx}')">🗑️ Remove</button>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      window.deleteInquiry = function(idx) {
+        let local = localStorage.getItem('travelbharat_inquiries');
+        if (local) {
+          let list = JSON.parse(local);
+          list.splice(idx, 1);
+          localStorage.setItem('travelbharat_inquiries', JSON.stringify(list));
+        }
+        showToast('Inquiry removed');
+        loadInquiries();
+        updateStats();
+      };
+
+      // 9. Update Statistics
+      function updateStats() {
+        const destEl = document.getElementById('statTotalDestinations');
+        const citiesEl = document.getElementById('statTotalCities');
+        const inqEl = document.getElementById('statTotalInquiries');
+
+        if (destEl) destEl.textContent = allDestinations.length;
+        if (citiesEl) citiesEl.textContent = (typeof TravelBharatCities !== 'undefined') ? TravelBharatCities.length : '200+';
+
+        let inqCount = 0;
+        try {
+          const local = localStorage.getItem('travelbharat_inquiries');
+          if (local) inqCount = JSON.parse(local).length;
+        } catch(e) {}
+        if (inqEl) inqEl.textContent = inqCount;
+      }
+
+      // Run loader
+      setTimeout(loadAllData, 100);
+    });
+  </script>
+</body>
+</html>

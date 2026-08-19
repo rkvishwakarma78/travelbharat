@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact TravelBharat. Send tourism inquiries, destination feedback, or corrections with our interactive client-validated portal." />
+  <title>Contact & Feedback – TravelBharat</title>
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ================= SITE HEADER ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="TravelBharat Homepage">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="states.html" class="nav-link">States & UTs</a>
+        <a href="search.html?filter=cities" class="nav-link">Cities</a>
+        <a href="experiences.html" class="nav-link">Experiences</a>
+        <a href="search.html" class="nav-link">Explore</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" onclick="window.location.href='search.html'" aria-label="Open Search">
+          <span class="search-icon">🔍</span>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <button type="button" class="mobile-toggle-btn" id="mobileToggle" aria-label="Toggle Mobile Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobileClose">&times;</button>
+    </div>
+    <nav class="mobile-nav-list">
+      <a href="index.html" class="mobile-nav-link">Home <span>&rarr;</span></a>
+      <a href="states.html" class="mobile-nav-link">States & UTs <span>&rarr;</span></a>
+      <a href="search.html?filter=cities" class="mobile-nav-link">Cities (200+) <span>&rarr;</span></a>
+      <a href="experiences.html" class="mobile-nav-link">Experiences <span>&rarr;</span></a>
+      <a href="search.html" class="mobile-nav-link">Explore & Search <span>&rarr;</span></a>
+      <a href="about.html" class="mobile-nav-link">About Us <span>&rarr;</span></a>
+      <a href="contact.html" class="mobile-nav-link active">Contact <span>&rarr;</span></a>
+    </nav>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+    <!-- Header Banner -->
+    <section style="background: linear-gradient(135deg, var(--bg-dark) 0%, var(--secondary) 100%); color: #ffffff; padding: 4rem 0 3rem 0;">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="breadcrumbs" style="color: #cbd5e1; margin-bottom: 1rem;">
+          <ol style="display:flex; align-items:center; gap:0.5rem;">
+            <li class="breadcrumb-item"><a href="index.html" style="color:#cbd5e1;">Home</a></li>
+            <span class="breadcrumb-sep">&rsaquo;</span>
+            <li class="breadcrumb-item current" style="color:#ffedd5;">Contact Us</li>
+          </ol>
+        </nav>
+
+        <h1 class="heading-display" style="font-size: 2.85rem; margin-bottom: 0.75rem; color: #ffffff;">
+          Get in Touch
+        </h1>
+        <p style="font-size: 1.15rem; color: #e2e8f0; max-width: 650px;">
+          Have questions about an Indian destination, feedback on our guides, or suggestions for new places? We'd love to hear from you.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Form & Info Grid -->
+    <section class="section">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3.5rem;" class="contact-grid">
+          
+          <!-- Contact Form Container -->
+          <div style="background: #ffffff; border-radius: var(--radius-xl); padding: 2.5rem; border: 1px solid var(--border-color); box-shadow: var(--shadow-lg);">
+            <div style="margin-bottom: 2rem;">
+              <span class="section-tag">Direct Inquiry</span>
+              <h2 style="font-size: 1.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem;">Send Us a Message</h2>
+              <p style="font-size: 0.9375rem; color: var(--text-muted);">Fill in the form below. Form submissions are validated and stored in browser storage for demonstration.</p>
+            </div>
+
+            <!-- Success Alert Banner (Hidden by default) -->
+            <div id="formSuccessAlert" style="display: none; background: #ecfdf5; border: 1.5px solid #10b981; border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.75rem; color: #065f46;">
+              <div style="display: flex; align-items: center; gap: 0.75rem; font-weight: 700; margin-bottom: 0.25rem;">
+                <span style="font-size: 1.25rem;">✅</span> Message Received Successfully!
+              </div>
+              <p style="font-size: 0.875rem; color: #047857; margin-left: 2rem;">
+                Thank you! Your inquiry has been validated and recorded locally. Review the submission below.
+              </p>
+            </div>
+
+            <form id="contactForm" novalidate>
+              <!-- Name Field -->
+              <div style="margin-bottom: 1.35rem;">
+                <label for="contactName" style="display: block; font-size: 0.875rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.4rem;">
+                  Full Name <span style="color: var(--primary);">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="contactName" 
+                  name="name" 
+                  placeholder="e.g. Priya Sharma" 
+                  style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1.5px solid var(--border-color); font-size: 0.9375rem;"
+                  required
+                />
+                <div class="field-error" id="nameError" style="display: none; color: #dc2626; font-size: 0.8125rem; margin-top: 0.35rem; font-weight: 600;"></div>
+              </div>
+
+              <!-- Email Field -->
+              <div style="margin-bottom: 1.35rem;">
+                <label for="contactEmail" style="display: block; font-size: 0.875rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.4rem;">
+                  Email Address <span style="color: var(--primary);">*</span>
+                </label>
+                <input 
+                  type="email" 
+                  id="contactEmail" 
+                  name="email" 
+                  placeholder="e.g. priya.sharma@example.com" 
+                  style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1.5px solid var(--border-color); font-size: 0.9375rem;"
+                  required
+                />
+                <div class="field-error" id="emailError" style="display: none; color: #dc2626; font-size: 0.8125rem; margin-top: 0.35rem; font-weight: 600;"></div>
+              </div>
+
+              <!-- Subject & Topic -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.35rem;">
+                <div>
+                  <label for="contactSubject" style="display: block; font-size: 0.875rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.4rem;">
+                    Inquiry Subject
+                  </label>
+                  <select id="contactSubject" name="subject" style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1.5px solid var(--border-color); font-size: 0.9375rem; background: #fff;">
+                    <option value="General Tourism Inquiry">General Tourism Inquiry</option>
+                    <option value="Destination Suggestion">Destination Suggestion</option>
+                    <option value="Information / Tariff Correction">Information / Tariff Correction</option>
+                    <option value="College Project Feedback">College Project Feedback</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="contactPlace" style="display: block; font-size: 0.875rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.4rem;">
+                    Referenced Destination
+                  </label>
+                  <input 
+                    type="text" 
+                    id="contactPlace" 
+                    name="place" 
+                    placeholder="e.g. Taj Mahal, Munnar, Goa" 
+                    style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1.5px solid var(--border-color); font-size: 0.9375rem;"
+                  />
+                </div>
+              </div>
+
+              <!-- Message Field -->
+              <div style="margin-bottom: 1.75rem;">
+                <label for="contactMessage" style="display: block; font-size: 0.875rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.4rem;">
+                  Your Message / Feedback <span style="color: var(--primary);">*</span>
+                </label>
+                <textarea 
+                  id="contactMessage" 
+                  name="message" 
+                  rows="5" 
+                  placeholder="Share your thoughts, suggestions, travel questions, or project evaluation notes..." 
+                  style="width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1.5px solid var(--border-color); font-size: 0.9375rem; resize: vertical;"
+                  required
+                ></textarea>
+                <div class="field-error" id="messageError" style="display: none; color: #dc2626; font-size: 0.8125rem; margin-top: 0.35rem; font-weight: 600;"></div>
+              </div>
+
+              <button type="submit" id="submitContactBtn" class="btn btn-primary btn-lg" style="width: 100%;">
+                Submit Inquiry &rarr;
+              </button>
+            </form>
+          </div>
+
+          <!-- Information Sidebar -->
+          <div style="display: flex; flex-direction: column; gap: 1.75rem;">
+            <!-- Info Card 1 -->
+            <div style="background: #ffffff; padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 2rem; margin-bottom: 0.75rem;">🎓</div>
+              <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">Academic Project Note</h3>
+              <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.6;">
+                This website is an interactive educational demonstration for Viva evaluation and B.Tech CSE / Software Engineering portfolio presentation.
+              </p>
+            </div>
+
+            <!-- Info Card 2 -->
+            <div style="background: #ffffff; padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 2rem; margin-bottom: 0.75rem;">💾</div>
+              <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">Local Storage Persistence</h3>
+              <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.6;">
+                Submitted inquiries are automatically formatted with timestamp metadata and saved into your browser's <code>localStorage</code>, demonstrating full frontend data lifecycle management without external backend dependencies.
+              </p>
+            </div>
+
+            <!-- Info Card 3 -->
+            <div style="background: #ffffff; padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 2rem; margin-bottom: 0.75rem;">🇮🇳</div>
+              <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">Tourism Discovery Support</h3>
+              <p style="font-size: 0.9375rem; color: var(--text-muted); line-height: 1.6;">
+                Covering all 36 States & UTs, 200+ historic cities, and 500+ monuments with verified timings and Google Maps coordinates.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Inquiries Section (Demonstrating LocalStorage Live) -->
+        <div style="margin-top: 4rem; background: #ffffff; border-radius: var(--radius-xl); padding: 2rem 2.5rem; border: 1px solid var(--border-color); box-shadow: var(--shadow-md);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <span class="section-tag">LocalStorage Live Data</span>
+              <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-main);">Recorded Inquiries in Browser Storage</h3>
+            </div>
+            <button type="button" id="clearStorageBtn" class="btn btn-sm btn-outline" style="display: none;">
+              Clear Saved Inquiries
+            </button>
+          </div>
+
+          <div id="inquiriesTableContainer">
+            <p style="color: var(--text-muted); font-size: 0.9375rem;">No inquiries recorded yet. Submit the form above to test the frontend validation and local persistence!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= SITE FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="logo-badge">TB</div>
+            <span>Travel<span class="brand-highlight">Bharat</span></span>
+          </div>
+          <p>TravelBharat is an independent tourism discovery platform showcasing India's rich heritage, diverse cultures, and stunning natural wonders.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Explore India</h4>
+          <div class="footer-links">
+            <a href="states.html">All 36 States & UTs</a>
+            <a href="search.html?filter=cities">200+ Cities</a>
+            <a href="experiences.html">Travel Experiences</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Advanced Search</a>
+            <a href="about.html">About TravelBharat</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Contact Desk</h4>
+          <p style="font-size: 0.875rem; color: #94a3b8; line-height: 1.6;">
+            Interactive validation engine recording feedback directly in local state.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 TravelBharat. Discover India. One Journey at a Time.</div>
+        <div><a href="index.html">Home</a> • <a href="about.html">About</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Scroll to top">&uarr;</button>
+
+  <!-- ================= JAVASCRIPT MODULES ================= -->
+  <script src="data/images.js"></script>
+  <script src="data/experiences.js"></script>
+  <script src="data/states.js"></script>
+  <script src="data/cities.js"></script>
+  <script src="data/destinations.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Contact Form Validation & LocalStorage Controller -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contactForm');
+      const nameInput = document.getElementById('contactName');
+      const emailInput = document.getElementById('contactEmail');
+      const subjectInput = document.getElementById('contactSubject');
+      const placeInput = document.getElementById('contactPlace');
+      const messageInput = document.getElementById('contactMessage');
+      const successAlert = document.getElementById('formSuccessAlert');
+
+      const nameError = document.getElementById('nameError');
+      const emailError = document.getElementById('emailError');
+      const messageError = document.getElementById('messageError');
+
+      const tableContainer = document.getElementById('inquiriesTableContainer');
+      const clearStorageBtn = document.getElementById('clearStorageBtn');
+
+      const STORAGE_KEY = 'travelbharat_inquiries';
+
+      function loadInquiries() {
+        const dataStr = localStorage.getItem(STORAGE_KEY);
+        let inquiries = [];
+        if (dataStr) {
+          try {
+            inquiries = JSON.parse(dataStr);
+          } catch(e) {
+            inquiries = [];
+          }
+        }
+
+        if (inquiries.length === 0) {
+          tableContainer.innerHTML = `
+            <p style="color: var(--text-muted); font-size: 0.9375rem;">No inquiries recorded yet. Submit the form above to test frontend validation and local persistence!</p>
+          `;
+          clearStorageBtn.style.display = 'none';
+          return;
+        }
+
+        clearStorageBtn.style.display = 'inline-flex';
+        let html = `
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
+              <thead>
+                <tr style="background: var(--bg-alt); border-bottom: 2px solid var(--border-color);">
+                  <th style="padding: 0.75rem 1rem;">Time</th>
+                  <th style="padding: 0.75rem 1rem;">Name</th>
+                  <th style="padding: 0.75rem 1rem;">Email</th>
+                  <th style="padding: 0.75rem 1rem;">Subject</th>
+                  <th style="padding: 0.75rem 1rem;">Destination</th>
+                  <th style="padding: 0.75rem 1rem;">Message</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        inquiries.forEach(item => {
+          html += `
+            <tr style="border-bottom: 1px solid var(--border-light);">
+              <td style="padding: 0.75rem 1rem; color: var(--text-muted); white-space: nowrap;">${item.timestamp}</td>
+              <td style="padding: 0.75rem 1rem; font-weight: 600;">${item.name}</td>
+              <td style="padding: 0.75rem 1rem; color: var(--text-muted);">${item.email}</td>
+              <td style="padding: 0.75rem 1rem;"><span class="place-badge-category" style="position:static; background:var(--secondary); font-size:0.7rem;">${item.subject}</span></td>
+              <td style="padding: 0.75rem 1rem; color: var(--primary); font-weight:600;">${item.place || '—'}</td>
+              <td style="padding: 0.75rem 1rem; color: var(--text-main); max-width: 250px;">${item.message}</td>
+            </tr>
+          `;
+        });
+
+        html += `</tbody></table></div>`;
+        tableContainer.innerHTML = html;
+      }
+
+      // Initial Load
+      loadInquiries();
+
+      // Clear LocalStorage
+      clearStorageBtn.addEventListener('click', () => {
+        if (confirm("Are you sure you want to clear all stored inquiries?")) {
+          localStorage.removeItem(STORAGE_KEY);
+          loadInquiries();
+          TravelBharatUI.showToast("Inquiries cleared from LocalStorage");
+        }
+      });
+
+      // Email format validator
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Reset errors
+        let hasError = false;
+        nameError.style.display = 'none';
+        emailError.style.display = 'none';
+        messageError.style.display = 'none';
+        nameInput.style.borderColor = 'var(--border-color)';
+        emailInput.style.borderColor = 'var(--border-color)';
+        messageInput.style.borderColor = 'var(--border-color)';
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const subject = subjectInput.value;
+        const place = placeInput.value.trim();
+        const message = messageInput.value.trim();
+
+        // 1. Validate Name
+        if (!name || name.length < 2) {
+          nameError.textContent = "Please enter your full name (minimum 2 characters).";
+          nameError.style.display = 'block';
+          nameInput.style.borderColor = '#dc2626';
+          hasError = true;
+        }
+
+        // 2. Validate Email
+        if (!email || !isValidEmail(email)) {
+          emailError.textContent = "Please provide a valid email address (e.g. user@domain.com).";
+          emailError.style.display = 'block';
+          emailInput.style.borderColor = '#dc2626';
+          hasError = true;
+        }
+
+        // 3. Validate Message
+        if (!message || message.length < 8) {
+          messageError.textContent = "Please enter a message of at least 8 characters.";
+          messageError.style.display = 'block';
+          messageInput.style.borderColor = '#dc2626';
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        // Create Inquiry Object
+        const newInquiry = {
+          id: 'inq_' + Date.now(),
+          timestamp: new Date().toLocaleString(),
+          name,
+          email,
+          subject,
+          place,
+          message
+        };
+
+        // Save to LocalStorage
+        const dataStr = localStorage.getItem(STORAGE_KEY);
+        let inquiries = [];
+        if (dataStr) {
+          try { inquiries = JSON.parse(dataStr); } catch(e) { inquiries = []; }
+        }
+        inquiries.unshift(newInquiry);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(inquiries));
+
+        // Show Success Alert
+        successAlert.style.display = 'block';
+        TravelBharatUI.showToast("Inquiry submitted and saved to LocalStorage!");
+
+        // Reset form
+        form.reset();
+
+        // Reload Table
+        loadInquiries();
+
+        // Scroll to success
+        successAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Discover India by travel experience: Heritage Forts, Pristine Beaches, Mountain Adventures, Spiritual Sanctuaries, and Wildlife Safaris on TravelBharat." />
+  <title>Travel Experiences & Themes in India – TravelBharat</title>
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ================= SITE HEADER ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="TravelBharat Homepage">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="states.html" class="nav-link">States & UTs</a>
+        <a href="search.html?filter=cities" class="nav-link">Cities</a>
+        <a href="experiences.html" class="nav-link active">Experiences</a>
+        <a href="search.html" class="nav-link">Explore</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" onclick="window.location.href='search.html'" aria-label="Open Search">
+          <span class="search-icon">🔍</span>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <button type="button" class="mobile-toggle-btn" id="mobileToggle" aria-label="Toggle Mobile Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobileClose">&times;</button>
+    </div>
+    <nav class="mobile-nav-list">
+      <a href="index.html" class="mobile-nav-link">Home <span>&rarr;</span></a>
+      <a href="states.html" class="mobile-nav-link">States & UTs <span>&rarr;</span></a>
+      <a href="search.html?filter=cities" class="mobile-nav-link">Cities (200+) <span>&rarr;</span></a>
+      <a href="experiences.html" class="mobile-nav-link active">Experiences <span>&rarr;</span></a>
+      <a href="search.html" class="mobile-nav-link">Explore & Search <span>&rarr;</span></a>
+      <a href="about.html" class="mobile-nav-link">About Us <span>&rarr;</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact <span>&rarr;</span></a>
+    </nav>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+    <!-- Header Banner -->
+    <section style="background: linear-gradient(135deg, #1e1b4b 0%, var(--secondary) 100%); color: #ffffff; padding: 3.5rem 0 2.5rem 0;">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="breadcrumbs" style="color: #cbd5e1; margin-bottom: 1rem;">
+          <ol style="display:flex; align-items:center; gap:0.5rem;">
+            <li class="breadcrumb-item"><a href="index.html" style="color:#cbd5e1;">Home</a></li>
+            <span class="breadcrumb-sep">&rsaquo;</span>
+            <li class="breadcrumb-item current" style="color:#ffedd5;">Travel Experiences</li>
+          </ol>
+        </nav>
+
+        <h1 class="heading-display" style="font-size: 2.75rem; margin-bottom: 0.75rem; color: #ffffff;">
+          Discover India by Experience
+        </h1>
+        <p style="font-size: 1.1rem; color: #e2e8f0; max-width: 720px;">
+          Choose your travel style—from royal palaces and serene backwaters to adrenaline treks and wildlife safaris.
+        </p>
+      </div>
+    </section>
+
+    <!-- Experience Category Selection Grid -->
+    <section class="section section-alt" style="padding: 3rem 0;">
+      <div class="container">
+        <div class="section-header text-left">
+          <span class="section-tag">Browse by Theme</span>
+          <h2 class="section-title heading-display">12 Curated Travel Themes</h2>
+          <p class="section-subtitle">Click any category to filter and explore relevant Indian destinations.</p>
+        </div>
+
+        <div class="experiences-grid" id="allExperiencesGrid">
+          <!-- Rendered via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Curated Destinations for Active Theme -->
+    <section class="section" id="themeResultsSection">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
+          <div>
+            <span class="section-tag" id="activeCategoryBadge">All Experiences</span>
+            <h2 class="section-title heading-display" id="activeCategoryTitle" style="margin-bottom: 0.25rem;">
+              Featured Destinations
+            </h2>
+            <p id="activeCategoryTagline" style="color: var(--text-muted); font-size: 0.95rem;">
+              Showing all verified tourist destinations across India.
+            </p>
+          </div>
+
+          <!-- Secondary Region Filter -->
+          <div style="display: flex; gap: 0.75rem; align-items: center;">
+            <label for="regionFilterSelect" style="font-size: 0.875rem; font-weight: 600; color: var(--text-muted);">Region:</label>
+            <select id="regionFilterSelect" style="padding: 0.45rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: #fff; font-size: 0.875rem;">
+              <option value="all">All Regions</option>
+              <option value="North">North India</option>
+              <option value="South">South India</option>
+              <option value="West">West India</option>
+              <option value="East">East India</option>
+              <option value="Northeast">Northeast India</option>
+              <option value="Central">Central India</option>
+              <option value="ut">Union Territories</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Places Grid -->
+        <div class="places-grid" id="categoryPlacesContainer">
+          <!-- Rendered via JavaScript -->
+        </div>
+
+        <div id="noCategoryPlaces" class="empty-state" style="display: none;">
+          <div class="empty-state-icon">🏕️</div>
+          <h3 class="empty-state-title">No Destinations Found</h3>
+          <p class="empty-state-desc">No tourist places matched this specific category and regional combination.</p>
+          <button type="button" class="btn btn-primary" id="resetThemeFilterBtn">View All Highlights</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= SITE FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="logo-badge">TB</div>
+            <span>Travel<span class="brand-highlight">Bharat</span></span>
+          </div>
+          <p>TravelBharat is an independent tourism discovery platform showcasing India's rich heritage, diverse cultures, and stunning natural wonders.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Explore India</h4>
+          <div class="footer-links">
+            <a href="states.html">All 36 States & UTs</a>
+            <a href="search.html?filter=cities">200+ Cities</a>
+            <a href="experiences.html">Travel Experiences</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Advanced Search</a>
+            <a href="about.html">About TravelBharat</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Themes</h4>
+          <p style="font-size: 0.875rem; color: #94a3b8; line-height: 1.6;">
+            Discover heritage, nature, spiritual retreats, and beach holidays across India with verified photography.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 TravelBharat. Discover India. One Journey at a Time.</div>
+        <div><a href="index.html">Home</a> • <a href="states.html">States</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Scroll to top">&uarr;</button>
+
+  <!-- ================= JAVASCRIPT MODULES ================= -->
+  <script src="data/images.js"></script>
+  <script src="data/experiences.js"></script>
+  <script src="data/states.js"></script>
+  <script src="data/cities.js"></script>
+  <script src="data/destinations.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Experiences Page Controller Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const expGrid = document.getElementById('allExperiencesGrid');
+      const placesContainer = document.getElementById('categoryPlacesContainer');
+      const noPlacesEl = document.getElementById('noCategoryPlaces');
+      const badgeEl = document.getElementById('activeCategoryBadge');
+      const titleEl = document.getElementById('activeCategoryTitle');
+      const taglineEl = document.getElementById('activeCategoryTagline');
+      const regionSelect = document.getElementById('regionFilterSelect');
+      const resetBtn = document.getElementById('resetThemeFilterBtn');
+
+      const urlParams = new URLSearchParams(window.location.search);
+      let activeCatId = urlParams.get('cat') || 'all';
+      let selectedRegion = 'all';
+
+      // 1. Render Experience Category Cards
+      if (expGrid) {
+        const experiences = TravelBharatData.getAllExperiences();
+        expGrid.innerHTML = experiences.map(e => `
+          <div class="experience-card" style="cursor: pointer;" data-id="${e.id}" onclick="selectExperience('${e.id}')">
+            <img src="${e.banner}" alt="${e.name}" loading="lazy" class="experience-card-bg" onerror="TravelBharatUI.handleImageError(this, '${e.id}')" />
+            <div class="experience-card-overlay"></div>
+            <div class="experience-card-content">
+              <span style="font-size: 1.5rem; display: block; margin-bottom: 0.3rem;">${e.icon}</span>
+              <h3 class="experience-card-title">${e.name}</h3>
+              <span class="experience-card-count">${e.count}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      window.selectExperience = function(catId) {
+        activeCatId = catId;
+        // Update URL parameter without reload
+        const newUrl = catId === 'all' ? 'experiences.html' : `experiences.html?cat=${catId}`;
+        window.history.pushState({ path: newUrl }, '', newUrl);
+        renderCategoryPlaces();
+        
+        // Scroll smoothly to results
+        const resultsEl = document.getElementById('themeResultsSection');
+        if (resultsEl) resultsEl.scrollIntoView({ behavior: 'smooth' });
+      };
+
+      function renderCategoryPlaces() {
+        let places = TravelBharatData.getAllDestinations();
+        const expObj = TravelBharatData.getExperienceById(activeCatId);
+
+        // Update Headers
+        if (expObj) {
+          badgeEl.textContent = `${expObj.icon} ${expObj.name}`;
+          titleEl.textContent = `${expObj.name} Destinations`;
+          taglineEl.textContent = expObj.tagline;
+          document.title = `${expObj.name} in India – Destinations & Guides | TravelBharat`;
+        } else {
+          badgeEl.textContent = 'All Themes';
+          titleEl.textContent = 'All Featured Destinations';
+          taglineEl.textContent = 'Explore iconic landmarks across all 12 Indian travel experiences.';
+          document.title = 'Travel Experiences & Themes in India – TravelBharat';
+        }
+
+        // Filter by Category
+        if (activeCatId && activeCatId !== 'all') {
+          places = places.filter(p => p.category.toLowerCase().includes(activeCatId.toLowerCase()) || activeCatId.toLowerCase().includes(p.category.toLowerCase()));
+        }
+
+        // Filter by Region
+        if (selectedRegion !== 'all') {
+          places = places.filter(p => {
+            const state = TravelBharatData.getStateById(p.stateId);
+            if (!state) return false;
+            if (selectedRegion.toLowerCase() === 'ut') return state.type === 'ut';
+            return state.region.toLowerCase() === selectedRegion.toLowerCase() && state.type !== 'ut';
+          });
+        }
+
+        if (places.length === 0) {
+          placesContainer.innerHTML = '';
+          noPlacesEl.style.display = 'block';
+        } else {
+          noPlacesEl.style.display = 'none';
+          placesContainer.innerHTML = places.map(p => TravelBharatUI.createPlaceCard(p)).join('');
+        }
+      }
+
+      // Initial Call
+      renderCategoryPlaces();
+
+      // Region Filter Change
+      if (regionSelect) {
+        regionSelect.addEventListener('change', (e) => {
+          selectedRegion = e.target.value;
+          renderCategoryPlaces();
+        });
+      }
+
+      // Reset
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          activeCatId = 'all';
+          selectedRegion = 'all';
+          if (regionSelect) regionSelect.value = 'all';
+          renderCategoryPlaces();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

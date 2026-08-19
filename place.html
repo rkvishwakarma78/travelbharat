@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Verified tourism information, entry fees, timings, history, gallery, and Google Maps location for tourist places across India on TravelBharat." />
+  <title>Destination Details – TravelBharat</title>
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ================= SITE HEADER ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="TravelBharat Homepage">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="states.html" class="nav-link">States & UTs</a>
+        <a href="search.html?filter=cities" class="nav-link">Cities</a>
+        <a href="experiences.html" class="nav-link">Experiences</a>
+        <a href="search.html" class="nav-link">Explore</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" onclick="window.location.href='search.html'" aria-label="Open Search">
+          <span class="search-icon">🔍</span>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <button type="button" class="mobile-toggle-btn" id="mobileToggle" aria-label="Toggle Mobile Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobileClose">&times;</button>
+    </div>
+    <nav class="mobile-nav-list">
+      <a href="index.html" class="mobile-nav-link">Home <span>&rarr;</span></a>
+      <a href="states.html" class="mobile-nav-link">States & UTs <span>&rarr;</span></a>
+      <a href="search.html?filter=cities" class="mobile-nav-link">Cities (200+) <span>&rarr;</span></a>
+      <a href="experiences.html" class="mobile-nav-link">Experiences <span>&rarr;</span></a>
+      <a href="search.html" class="mobile-nav-link">Explore & Search <span>&rarr;</span></a>
+      <a href="about.html" class="mobile-nav-link">About Us <span>&rarr;</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact <span>&rarr;</span></a>
+    </nav>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+    <!-- Error State (If Place Not Found) -->
+    <div id="placeErrorContainer" class="container" style="display: none; padding: 5rem 1.5rem;">
+      <div class="empty-state">
+        <div class="empty-state-icon">⚠️</div>
+        <h2 class="empty-state-title">Destination Not Found</h2>
+        <p class="empty-state-desc" id="placeErrorMessage">The requested tourist place could not be located in our database.</p>
+        <a href="index.html" class="btn btn-primary">&larr; Return to Homepage</a>
+      </div>
+    </div>
+
+    <!-- Place Dynamic Content -->
+    <div id="placeMainContent">
+      <!-- Breadcrumb Bar -->
+      <section style="background: var(--bg-alt); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div id="placeBreadcrumbs"></div>
+          <a href="#" id="placeBackBtn" class="btn btn-sm btn-outline">
+            &larr; Back to City Guide
+          </a>
+        </div>
+      </section>
+
+      <!-- Main Destination Header & Showcase -->
+      <section class="section" style="padding: 2.5rem 0 1.5rem 0;">
+        <div class="container">
+          <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2.5rem; align-items: center;" class="place-hero-grid">
+            <!-- Landmark Featured Image -->
+            <div style="position: relative; height: 420px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
+              <img 
+                id="placeHeroImage" 
+                src="" 
+                alt="Destination Image" 
+                loading="eager" 
+                style="width: 100%; height: 100%; object-fit: cover;"
+              />
+              <span id="placeCategoryBadge" class="place-badge-category">Category</span>
+            </div>
+
+            <!-- Title & Quick Tags -->
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--primary); font-weight: 700; font-size: 0.9375rem; margin-bottom: 0.5rem;">
+                <span>📍</span>
+                <span id="placeLocationBadge">City, State</span>
+              </div>
+              <h1 id="placeName" class="heading-display" style="font-size: 2.75rem; margin-bottom: 1rem; color: var(--text-main); line-height: 1.2;">
+                Destination Name
+              </h1>
+
+              <div id="placeTagsContainer" style="display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1.5rem;"></div>
+
+              <p id="placeDescription" style="font-size: 1.0625rem; line-height: 1.7; color: var(--text-main); margin-bottom: 2rem;">
+                Loading destination overview...
+              </p>
+
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="#visitingInfoSection" class="btn btn-primary">Visiting Essentials &darr;</a>
+                <a href="#gallerySection" class="btn btn-outline">View Photo Gallery</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Visiting Information & Key Facts -->
+      <section class="section section-alt" id="visitingInfoSection" style="padding: 3.5rem 0;">
+        <div class="container">
+          <div class="section-header text-left">
+            <span class="section-tag">Travel Essentials</span>
+            <h2 class="section-title heading-display">Timings, Entry Fee & Guidelines</h2>
+            <p class="section-subtitle">Verified practical information to help you plan your visit smoothly.</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+            <!-- Opening Hours -->
+            <div style="background: #fff; padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 1.75rem; margin-bottom: 0.5rem;">🕒</div>
+              <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem;">Visiting Hours</h3>
+              <p id="placeTimings" style="font-size: 0.9375rem; color: var(--text-main); font-weight: 600;">—</p>
+            </div>
+
+            <!-- Entry Fee -->
+            <div style="background: #fff; padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 1.75rem; margin-bottom: 0.5rem;">🎟️</div>
+              <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem;">Entry Fee</h3>
+              <p id="placeEntryFee" style="font-size: 0.9375rem; color: var(--text-main); font-weight: 600;">—</p>
+            </div>
+
+            <!-- Best Time & Lighting -->
+            <div style="background: #fff; padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 1.75rem; margin-bottom: 0.5rem;">🌅</div>
+              <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem;">Best Season & Time</h3>
+              <p id="placeBestTime" style="font-size: 0.9375rem; color: var(--primary); font-weight: 600;">—</p>
+            </div>
+
+            <!-- Exact Location -->
+            <div style="background: #fff; padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 1.75rem; margin-bottom: 0.5rem;">📌</div>
+              <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem;">Location Address</h3>
+              <p id="placeAddress" style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.4;">—</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- History & Cultural Significance -->
+      <section class="section">
+        <div class="container">
+          <div style="max-width: 900px;">
+            <span class="section-tag">Heritage & Background</span>
+            <h2 class="section-title heading-display">History & Significance</h2>
+            <p id="placeHistory" style="font-size: 1.125rem; line-height: 1.8; color: var(--text-main); margin-top: 1rem;">
+              Loading history...
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Photo Gallery Section -->
+      <section class="section section-alt" id="gallerySection">
+        <div class="container">
+          <div class="section-header text-left">
+            <span class="section-tag">Visual Showcase</span>
+            <h2 class="section-title heading-display">High-Resolution Photo Gallery</h2>
+            <p class="section-subtitle">Click any photograph to view in high definition lightbox mode.</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem;" id="placeGalleryGrid">
+            <!-- Rendered via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Google Maps Location Section -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header text-left">
+            <span class="section-tag">Directions & Coordinates</span>
+            <h2 class="section-title heading-display">Location on Google Maps</h2>
+            <p class="section-subtitle">Get direct turn-by-turn navigation and explore surrounding points of interest.</p>
+          </div>
+
+          <div style="background: #ffffff; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--shadow-md);">
+            <div style="height: 380px; width: 100%;">
+              <iframe 
+                id="placeMapEmbed" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Destination Google Maps Location"
+              ></iframe>
+            </div>
+            <div style="padding: 1.25rem 1.75rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; background: #fff; border-top: 1px solid var(--border-color);">
+              <span style="font-size: 0.9375rem; color: var(--text-muted);">
+                Open in official Google Maps app for live directions, reviews, and traffic.
+              </span>
+              <a href="#" target="_blank" rel="noopener noreferrer" id="placeGoogleMapsBtn" class="btn btn-primary btn-sm">
+                Open in Google Maps <span>&rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nearby Attractions Section -->
+      <section class="section section-alt">
+        <div class="container">
+          <div class="section-header text-left">
+            <span class="section-tag">Discover More</span>
+            <h2 class="section-title heading-display">Nearby Attractions</h2>
+            <p class="section-subtitle">Other recommended sights and historical points nearby to add to your itinerary.</p>
+          </div>
+
+          <div class="places-grid" id="nearbyAttractionsGrid">
+            <!-- Rendered via JavaScript -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ================= SITE FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="logo-badge">TB</div>
+            <span>Travel<span class="brand-highlight">Bharat</span></span>
+          </div>
+          <p>TravelBharat is an independent tourism discovery platform showcasing India's rich heritage, diverse cultures, and stunning natural wonders.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Explore India</h4>
+          <div class="footer-links">
+            <a href="states.html">All 36 States & UTs</a>
+            <a href="search.html?filter=cities">200+ Cities</a>
+            <a href="experiences.html">Travel Experiences</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Advanced Search</a>
+            <a href="about.html">About TravelBharat</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Verified Info</h4>
+          <p style="font-size: 0.875rem; color: #94a3b8; line-height: 1.6;">
+            All entry fees, timings, and photography are verified against official state tourism portals.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 TravelBharat. Discover India. One Journey at a Time.</div>
+        <div><a href="index.html">Home</a> • <a href="states.html">States</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Scroll to top">&uarr;</button>
+
+  <!-- ================= JAVASCRIPT MODULES ================= -->
+  <script src="data/images.js"></script>
+  <script src="data/experiences.js"></script>
+  <script src="data/states.js"></script>
+  <script src="data/cities.js"></script>
+  <script src="data/destinations.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/place.js"></script>
+</body>
+</html>

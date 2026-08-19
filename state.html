@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Discover Indian state travel guides, famous cities, historical monuments, culture, cuisine, and weather with TravelBharat." />
+  <title>State Travel Guide – TravelBharat</title>
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ================= SITE HEADER ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="TravelBharat Homepage">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="states.html" class="nav-link active">States & UTs</a>
+        <a href="search.html?filter=cities" class="nav-link">Cities</a>
+        <a href="experiences.html" class="nav-link">Experiences</a>
+        <a href="search.html" class="nav-link">Explore</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" onclick="window.location.href='search.html'" aria-label="Open Search">
+          <span class="search-icon">🔍</span>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <button type="button" class="mobile-toggle-btn" id="mobileToggle" aria-label="Toggle Mobile Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobileClose">&times;</button>
+    </div>
+    <nav class="mobile-nav-list">
+      <a href="index.html" class="mobile-nav-link">Home <span>&rarr;</span></a>
+      <a href="states.html" class="mobile-nav-link active">States & UTs <span>&rarr;</span></a>
+      <a href="search.html?filter=cities" class="mobile-nav-link">Cities (200+) <span>&rarr;</span></a>
+      <a href="experiences.html" class="mobile-nav-link">Experiences <span>&rarr;</span></a>
+      <a href="search.html" class="mobile-nav-link">Explore & Search <span>&rarr;</span></a>
+      <a href="about.html" class="mobile-nav-link">About Us <span>&rarr;</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact <span>&rarr;</span></a>
+    </nav>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+    <!-- Error Fallback Container (If state ID invalid) -->
+    <div id="stateErrorContainer" class="container" style="display: none; padding: 5rem 1.5rem;">
+      <div class="empty-state">
+        <div class="empty-state-icon">⚠️</div>
+        <h2 class="empty-state-title">State Not Found</h2>
+        <p class="empty-state-desc" id="errorMessage">The requested state or territory could not be loaded.</p>
+        <a href="states.html" class="btn btn-primary">&larr; Back to All States & UTs</a>
+      </div>
+    </div>
+
+    <!-- State Dynamic View Content -->
+    <div id="stateMainContent">
+      <!-- State Hero Banner Section -->
+      <section id="stateHeroBanner" style="position: relative; min-height: 440px; display: flex; align-items: flex-end; padding: 4rem 0 3.5rem 0; color: #ffffff; background-size: cover; background-position: center;">
+        <div class="container" style="position: relative; z-index: 2; width: 100%;">
+          <!-- Breadcrumb & Back Navigation -->
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+            <div id="stateBreadcrumbs"></div>
+            <a href="states.html" class="btn btn-sm btn-outline-white" style="text-decoration:none;">
+              &larr; Back to All States
+            </a>
+          </div>
+
+          <div style="max-width: 800px;">
+            <span id="stateTypeBadge" class="section-tag" style="background: rgba(255, 255, 255, 0.2); color: #fff; border: 1px solid rgba(255, 255, 255, 0.3); backdrop-filter: blur(8px);">
+              Region • State
+            </span>
+            <h1 id="stateName" class="heading-display" style="font-size: 3.25rem; margin-bottom: 0.75rem; color: #ffffff;">
+              State Name
+            </h1>
+            <p id="stateTagline" style="font-size: 1.25rem; color: #ffedd5; font-weight: 500;">
+              State Tagline
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Facts Panel -->
+      <div class="container" style="margin-top: -2.5rem; position: relative; z-index: 10;">
+        <div style="background: #ffffff; border-radius: var(--radius-lg); padding: 1.75rem 2rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+          <div>
+            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Capital City</span>
+            <h4 id="factCapital" style="font-size: 1.1rem; color: var(--text-main); margin-top: 0.25rem;">—</h4>
+          </div>
+          <div>
+            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Best Time to Visit</span>
+            <h4 id="factBestTime" style="font-size: 1.1rem; color: var(--primary); margin-top: 0.25rem;">—</h4>
+          </div>
+          <div>
+            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Famous Cuisine</span>
+            <h4 id="factCuisine" style="font-size: 0.95rem; color: var(--text-main); margin-top: 0.25rem;">—</h4>
+          </div>
+          <div>
+            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted);">Major Airports</span>
+            <h4 id="factAirports" style="font-size: 0.95rem; color: var(--text-main); margin-top: 0.25rem;">—</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- About the State Section -->
+      <section class="section" style="padding: 4rem 0 2rem 0;">
+        <div class="container">
+          <div style="max-width: 900px;">
+            <span class="section-tag">Destination Profile</span>
+            <h2 class="section-title heading-display">About the State</h2>
+            <p id="stateOverviewText" style="font-size: 1.125rem; line-height: 1.8; color: var(--text-main); margin-top: 1rem;">
+              Loading state overview...
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popular Cities Section -->
+      <section class="section section-alt" id="stateCitiesSection">
+        <div class="container">
+          <div class="section-header text-left">
+            <span class="section-tag">Urban & Heritage Centers</span>
+            <h2 class="section-title heading-display">Popular Cities <span id="stateCitiesCountLabel" style="font-size: 1.25rem; color: var(--text-muted); font-weight: 500;"></span></h2>
+            <p class="section-subtitle">Discover historical capitals, pilgrimage towns, and scenic retreats located in this state.</p>
+          </div>
+
+          <div class="cities-grid" id="stateCitiesGrid">
+            <!-- Rendered via JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Top Tourist Places Section -->
+      <section class="section" id="statePlacesSection">
+        <div class="container">
+          <div class="section-header text-left">
+            <span class="section-tag">Must-Visit Attractions</span>
+            <h2 class="section-title heading-display">Top Tourist Places <span id="statePlacesCountLabel" style="font-size: 1.25rem; color: var(--text-muted); font-weight: 500;"></span></h2>
+            <p class="section-subtitle">Iconic monuments, palaces, national parks, and natural wonders with verified visiting details.</p>
+          </div>
+
+          <!-- Category Filter Tabs -->
+          <div class="filter-tabs-wrapper" id="statePlaceTabs">
+            <button type="button" class="tab-btn active" data-category="all">All Highlights</button>
+            <button type="button" class="tab-btn" data-category="Heritage">Heritage & Forts</button>
+            <button type="button" class="tab-btn" data-category="Nature">Nature & Valleys</button>
+            <button type="button" class="tab-btn" data-category="Spiritual">Spiritual & Shrines</button>
+            <button type="button" class="tab-btn" data-category="Adventure">Adventure</button>
+          </div>
+
+          <div class="places-grid" id="statePlacesGrid">
+            <!-- Rendered via JavaScript -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ================= SITE FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="logo-badge">TB</div>
+            <span>Travel<span class="brand-highlight">Bharat</span></span>
+          </div>
+          <p>TravelBharat is an independent tourism discovery platform showcasing India's rich heritage, diverse cultures, and stunning natural wonders.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Explore India</h4>
+          <div class="footer-links">
+            <a href="states.html">All 36 States & UTs</a>
+            <a href="search.html?filter=cities">200+ Cities</a>
+            <a href="experiences.html">Travel Experiences</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Search Destinations</a>
+            <a href="about.html">About TravelBharat</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Navigation</h4>
+          <p style="font-size: 0.875rem; color: #94a3b8; line-height: 1.6;">
+            Navigate from State &rarr; City &rarr; Tourist Attraction seamlessly across all Indian regions.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 TravelBharat. Discover India. One Journey at a Time.</div>
+        <div><a href="index.html">Home</a> • <a href="states.html">All States</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Scroll to top">&uarr;</button>
+
+  <!-- ================= JAVASCRIPT MODULES ================= -->
+  <script src="data/images.js"></script>
+  <script src="data/experiences.js"></script>
+  <script src="data/states.js"></script>
+  <script src="data/cities.js"></script>
+  <script src="data/destinations.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/state.js"></script>
+</body>
+</html>

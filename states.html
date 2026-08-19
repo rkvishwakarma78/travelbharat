@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore all 28 Indian States and 8 Union Territories with TravelBharat. Discover cities, monuments, culture, and travel guides." />
+  <title>All 36 States & Union Territories – TravelBharat</title>
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ================= SITE HEADER ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="TravelBharat Homepage">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="states.html" class="nav-link active">States & UTs</a>
+        <a href="search.html?filter=cities" class="nav-link">Cities</a>
+        <a href="experiences.html" class="nav-link">Experiences</a>
+        <a href="search.html" class="nav-link">Explore</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="search-trigger-btn" onclick="window.location.href='search.html'" aria-label="Open Search">
+          <span class="search-icon">🔍</span>
+          <span>Search...</span>
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+        <button type="button" class="mobile-toggle-btn" id="mobileToggle" aria-label="Toggle Mobile Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileOverlay"></div>
+  <aside class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="logo-badge">TB</div>
+        <span>Travel<span class="brand-highlight">Bharat</span></span>
+      </div>
+      <button type="button" class="mobile-drawer-close" id="mobileClose">&times;</button>
+    </div>
+    <nav class="mobile-nav-list">
+      <a href="index.html" class="mobile-nav-link">Home <span>&rarr;</span></a>
+      <a href="states.html" class="mobile-nav-link active">States & UTs <span>&rarr;</span></a>
+      <a href="search.html?filter=cities" class="mobile-nav-link">Cities (200+) <span>&rarr;</span></a>
+      <a href="experiences.html" class="mobile-nav-link">Experiences <span>&rarr;</span></a>
+      <a href="search.html" class="mobile-nav-link">Explore & Search <span>&rarr;</span></a>
+      <a href="about.html" class="mobile-nav-link">About Us <span>&rarr;</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact <span>&rarr;</span></a>
+    </nav>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main>
+    <!-- Page Header Banner -->
+    <section style="background: linear-gradient(135deg, var(--secondary) 0%, #0b112c 100%); color: #ffffff; padding: 3.5rem 0 2.5rem 0;">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="breadcrumbs" style="color: #cbd5e1; margin-bottom: 1rem;">
+          <ol style="display:flex; align-items:center; gap:0.5rem;">
+            <li class="breadcrumb-item"><a href="index.html" style="color:#cbd5e1;">Home</a></li>
+            <span class="breadcrumb-sep">&rsaquo;</span>
+            <li class="breadcrumb-item current" style="color:#ffedd5;">States & Union Territories</li>
+          </ol>
+        </nav>
+
+        <h1 class="heading-display" style="font-size: 2.75rem; margin-bottom: 0.75rem; color: #ffffff;">
+          Explore India by State & UT
+        </h1>
+        <p style="font-size: 1.1rem; color: #e2e8f0; max-width: 700px; margin-bottom: 2rem;">
+          Discover the unique heritage, geography, culture, cuisine, and top tourist destinations across all 28 States and 8 Union Territories.
+        </p>
+
+        <!-- Live State Filter & Search Bar -->
+        <div style="display: flex; gap: 1rem; max-width: 550px; background: #ffffff; border-radius: var(--radius-pill); padding: 0.4rem 0.6rem 0.4rem 1.25rem; box-shadow: var(--shadow-lg);">
+          <span style="display:flex; align-items:center; color: var(--text-muted);">🔍</span>
+          <input 
+            type="text" 
+            id="stateSearchInput" 
+            placeholder="Search state by name, capital, or region..." 
+            style="flex: 1; border: none; outline: none; font-size: 0.9375rem; color: var(--text-main);"
+            aria-label="Filter states"
+          />
+          <button type="button" id="clearSearchBtn" class="btn btn-sm btn-outline" style="display:none; padding: 0.3rem 0.8rem;">Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- States Catalog Section -->
+    <section class="section">
+      <div class="container">
+        <!-- Region Filter Tabs -->
+        <div class="filter-tabs-wrapper" id="regionTabs" role="tablist">
+          <button type="button" class="tab-btn active" data-region="all" role="tab" aria-selected="true">All (36)</button>
+          <button type="button" class="tab-btn" data-region="North" role="tab">North India</button>
+          <button type="button" class="tab-btn" data-region="South" role="tab">South India</button>
+          <button type="button" class="tab-btn" data-region="West" role="tab">West India</button>
+          <button type="button" class="tab-btn" data-region="East" role="tab">East India</button>
+          <button type="button" class="tab-btn" data-region="Northeast" role="tab">Northeast India</button>
+          <button type="button" class="tab-btn" data-region="Central" role="tab">Central India</button>
+          <button type="button" class="tab-btn" data-region="ut" role="tab">Union Territories (8)</button>
+        </div>
+
+        <!-- Result Summary Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; color: var(--text-muted); font-size: 0.9375rem;">
+          <span id="stateCountLabel">Showing all 36 States & Union Territories</span>
+          <div style="display: flex; gap: 0.5rem;">
+            <select id="stateSortSelect" style="padding: 0.4rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background: #fff; font-size: 0.875rem;" aria-label="Sort states">
+              <option value="name-asc">Sort: A to Z</option>
+              <option value="name-desc">Sort: Z to A</option>
+              <option value="region">Sort: By Region</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dynamic State Grid -->
+        <div class="states-grid" id="statesContainer">
+          <!-- Rendered via JavaScript -->
+        </div>
+
+        <!-- Empty State (Shown if no search match) -->
+        <div id="noStatesFound" class="empty-state" style="display: none;">
+          <div class="empty-state-icon">🗺️</div>
+          <h3 class="empty-state-title">No States or UTs Found</h3>
+          <p class="empty-state-desc">No Indian state or territory matched your search. Try checking your spelling or clear filters.</p>
+          <button type="button" class="btn btn-primary" id="resetFiltersBtn">Reset All Filters</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= SITE FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="logo-badge">TB</div>
+            <span>Travel<span class="brand-highlight">Bharat</span></span>
+          </div>
+          <p>TravelBharat is an independent tourism discovery platform showcasing India's rich heritage, diverse cultures, and stunning natural wonders.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Explore India</h4>
+          <div class="footer-links">
+            <a href="states.html">All 36 States & UTs</a>
+            <a href="search.html?filter=cities">200+ Cities</a>
+            <a href="experiences.html">Travel Experiences</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Advanced Search</a>
+            <a href="about.html">About TravelBharat</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Navigation</h4>
+          <p style="font-size: 0.875rem; color: #94a3b8; line-height: 1.6;">
+            Select any state or Union Territory card to discover its top tourist cities, historical sites, and regional guides.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 TravelBharat. Discover India. One Journey at a Time.</div>
+        <div><a href="index.html">Home</a> • <a href="about.html">About</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Scroll to top">&uarr;</button>
+
+  <!-- ================= JAVASCRIPT MODULES ================= -->
+  <script src="data/images.js"></script>
+  <script src="data/experiences.js"></script>
+  <script src="data/states.js"></script>
+  <script src="data/cities.js"></script>
+  <script src="data/destinations.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- States Page Controller Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('statesContainer');
+      const countLabel = document.getElementById('stateCountLabel');
+      const searchInput = document.getElementById('stateSearchInput');
+      const clearBtn = document.getElementById('clearSearchBtn');
+      const sortSelect = document.getElementById('stateSortSelect');
+      const tabBtns = document.querySelectorAll('#regionTabs .tab-btn');
+      const noStatesFound = document.getElementById('noStatesFound');
+      const resetBtn = document.getElementById('resetFiltersBtn');
+
+      let currentRegion = 'all';
+      let searchQuery = '';
+      let currentSort = 'name-asc';
+
+      // Check URL query parameters (e.g. ?region=North)
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialRegion = urlParams.get('region');
+      if (initialRegion) {
+        currentRegion = initialRegion;
+        tabBtns.forEach(btn => {
+          if (btn.getAttribute('data-region').toLowerCase() === initialRegion.toLowerCase()) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+
+      function renderStates() {
+        let states = TravelBharatData.getAllStates();
+
+        // 1. Filter by Region
+        if (currentRegion !== 'all') {
+          if (currentRegion.toLowerCase() === 'ut') {
+            states = states.filter(s => s.type === 'ut');
+          } else {
+            states = states.filter(s => s.region.toLowerCase() === currentRegion.toLowerCase() && s.type !== 'ut');
+          }
+        }
+
+        // 2. Filter by Search Query
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          states = states.filter(s => 
+            s.name.toLowerCase().includes(q) ||
+            s.capital.toLowerCase().includes(q) ||
+            s.tagline.toLowerCase().includes(q) ||
+            s.region.toLowerCase().includes(q)
+          );
+        }
+
+        // 3. Sort States
+        if (currentSort === 'name-asc') {
+          states.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (currentSort === 'name-desc') {
+          states.sort((a, b) => b.name.localeCompare(a.name));
+        } else if (currentSort === 'region') {
+          states.sort((a, b) => a.region.localeCompare(b.region) || a.name.localeCompare(b.name));
+        }
+
+        // 4. Update UI
+        if (states.length === 0) {
+          container.innerHTML = '';
+          noStatesFound.style.display = 'block';
+          countLabel.textContent = 'No matching States or UTs';
+        } else {
+          noStatesFound.style.display = 'none';
+          container.innerHTML = states.map(s => TravelBharatUI.createStateCard(s)).join('');
+          countLabel.textContent = `Showing ${states.length} ${states.length === 1 ? 'State / UT' : 'States & Union Territories'}`;
+        }
+      }
+
+      // Initial Render
+      renderStates();
+
+      // Region Tabs Click
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentRegion = btn.getAttribute('data-region');
+          renderStates();
+        });
+      });
+
+      // Search Input
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        clearBtn.style.display = searchQuery ? 'inline-flex' : 'none';
+        renderStates();
+      });
+
+      // Clear Search
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        clearBtn.style.display = 'none';
+        searchInput.focus();
+        renderStates();
+      });
+
+      // Sort Change
+      sortSelect.addEventListener('change', (e) => {
+        currentSort = e.target.value;
+        renderStates();
+      });
+
+      // Reset All
+      resetBtn.addEventListener('click', () => {
+        currentRegion = 'all';
+        searchQuery = '';
+        searchInput.value = '';
+        clearBtn.style.display = 'none';
+        tabBtns.forEach(b => b.classList.remove('active'));
+        if (tabBtns[0]) tabBtns[0].classList.add('active');
+        renderStates();
+      });
+    });
+  </script>
+</body>
+</html>
